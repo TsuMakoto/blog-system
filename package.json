@@ -1,0 +1,9 @@
+{
+  "name": "blog-system",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "stylelint": "^10.0.1"
+  }
+}
