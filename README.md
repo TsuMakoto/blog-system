@@ -1,24 +1,28 @@
-# README
+# blog-system
+RoR研修課題１回目ーブログシステムを作成する
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+ログイン画面
+ユーザIDとパスワードでログイン
+  - ユーザID（重複禁止）
+  - メールアドレス
+  - パスワード(10文字以上, リセット：メールアドレス)
 
-Things you may want to cover:
+ホーム画面
+  - 各ログインユーザーは、自分のホーム画面を持つ。
+  - ログインしているかどうかにかかわらず、誰でも閲覧可能
 
-* Ruby version
+記事詳細
+  - タイトル
+  - 本文
+  - コメント一覧
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+記事新規作成・編集
+  - タイトル
+  - 本文
+  
+## 開発環境
+  - Ruby 2.6.2
+  - Rails 5.2.3
+  - PostgreSQL 11.2
+  
