@@ -1,0 +1,80 @@
+AllCops:
+  TargetRubyVersion: 2.5.1
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'spec/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+    - 'Capfile'
+    - 'lib/capistrano/tasks/unicorn.rake'
+    - 'lib/tasks/**/*.rake'
+    - 'lib/generators/**/*'
+    - 'node_modules/**/*'
+    - 'public/css/**/*'
+    - 'public/js/**/*'
+    - 'public/images/**/*'
+    - 'app/views/**/*.json.jbuilder'
+    - 'spec/**/*'
+    - 'app/controllers/api/**/*'
+
+Rails:
+  Enabled: true
+
+Bundler/DuplicatedGem:
+  Exclude:
+    - 'Gemfile'
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - 'app/views/**/*.jbuilder'
+
+Metrics/MethodLength:
+  Max: 20
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
+    - profile
