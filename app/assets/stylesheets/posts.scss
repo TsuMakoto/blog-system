@@ -9,6 +9,18 @@
   margin: auto;
 }
 
+/* 左サイドメニュー*/
+#menu-all {
+  float: left;
+  width: 15%;
+}
+
+/* 右サイドメニュー */
+#post-component {
+  float: right;
+  width: 15%;
+}
+
 /* タイトルのフォームのスタイル */
 .title-form {
   width: 100%;
@@ -41,14 +53,14 @@
   margin-top: 20px;
 }
 
-/* 左サイドメニュー*/
-#menu-all {
-  float: left;
-  width: 15%;
+.category-frame {
+
 }
 
-/* 右サイドメニュー */
-#post-component {
-  float: right;
-  width: 15%;
+.category-frame ul {
+  list-style: none;
+}
+
+/* 投稿ボタンのスタイル */
+.update-post {
 }
