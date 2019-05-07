@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+MstStatus.create(status_name: '公開',   created_at: '2019-05-07',  updated_at: '2019-05-07')
+MstStatus.create(status_name: '非公開', created_at: '2019-05-07',  updated_at: '2019-05-07')
+MstStatus.create(status_name: '下書き', created_at: '2019-05-07',  updated_at: '2019-05-07')
+MstStatus.create(status_name: '削除',   created_at: '2019-05-07',  updated_at: '2019-05-07')

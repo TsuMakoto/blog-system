@@ -1,0 +1,2 @@
+class MstStatus < ApplicationRecord
+end

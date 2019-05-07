@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_051832) do
+ActiveRecord::Schema.define(version: 2019_05_07_054703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.text "name"
+    t.text "parent_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mst_statuses", force: :cascade do |t|
+    t.text "status_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "content"
+    t.text "title"
+    t.bigint "mst_status_id"
+    t.bigint "category_id"
+    t.datetime "post_time"
+    t.text "thumnail_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["mst_status_id"], name: "index_posts_on_mst_status_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +55,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_051832) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "mst_statuses"
+  add_foreign_key "posts", "users"
 end
