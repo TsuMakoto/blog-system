@@ -4,8 +4,9 @@
 
 /* タイトルのIDのスタイル設定 */ 
 #edit-title {
-  width: 100%;
+  width: 65%;
   height: 40px;
+  margin: auto;
 }
 
 /* タイトルのフォームのスタイル */
@@ -35,4 +36,19 @@
 /* 記事を書く領域のスタイルを定義 */
 .edit {
   border: 1px double #000;
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+/* 左サイドメニュー*/
+#menu-all {
+  float: left;
+  width: 15%;
+}
+
+/* 右サイドメニュー */
+#post-component {
+  float: right;
+  width: 15%;
 }
