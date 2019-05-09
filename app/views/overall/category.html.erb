@@ -1,0 +1,28 @@
+<div id="category-region" class="show-region">
+  <!-- カテゴリー追加領域 -->
+  <%= form_tag("/overall/category/new") do %>
+    <div id="append-new-cate">
+      <input type="text" name="new_categrory" placeholder="カテゴリー名">
+      <span>親カテゴリーの選択</span>
+      <select id="parent-list" name="parent">
+        <option value="0">なし</option>
+        <% @categorys.each do |category| %>
+          <option value="<%= category[:id] %>"><%= category[:name] %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="登録">
+    </div>
+  <% end %>
+  <!-- 現在のカテゴリー -->
+  <ul class="categorys">
+    <% @categorys.each do |category| %>
+      <% if category[:level] == 1 %>
+        <li class="category level1"><%= category[:name] %></li>
+      <% elsif category[:level] == 2 %>
+        <li class="category level2"><%= category[:name] %></li>
+      <% else %>
+        <li class="category level3"><%= category[:name] %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

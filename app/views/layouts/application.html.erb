@@ -10,6 +10,32 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="head-contents">
+      <ul>
+        <li><%= link_to("ユーザ一覧", "/users/all") %></li>
+        <li><%= link_to("投稿一覧", "/posts/show") %></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <!--- 投稿一覧やホームに戻るための左サイドバー -->
+      <% if @is_disp_side %>
+        <div id="left-menu-all">
+          <div class="side-menu">
+            <ul>
+              <li><%= link_to('ホームへ', '/') %></li>
+              <li><%= link_to('自分の記事', "/posts/#{current_user.id}/show") %></li>
+              <li><%= link_to('新規作成', "/posts/1/new") %></li>
+              <li><%= link_to('カテゴリー', '/overall/category') %></li>
+              <li>タグ</li>
+              <li>お気に入り一覧</li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <!--- 投稿一覧やホームに戻るためのサイドバー -->
+      <div id="original-contents">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

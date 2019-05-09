@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+/* ヘッダーのスタイル */
+.head-contents {
+  margin: 20px 40px;
+}
+
+.head-contents ul{
+  list-style: none;
+  text-align: right;
+}
+
+.head-contents li {
+  display: inline;
+}
+
+/* 左サイドメニュー*/
+#left-menu-all {
+  float: left;
+  position: fixed;
+  width: 15%;
+}
+
+#original-contents {
+  margin-left: 20%;
+  width: 80%;
+}

@@ -1,0 +1,24 @@
+<div id="post-component">
+  <div class="side-component">
+    <div class="category-frame">
+      <ul>
+        <% @categorys.each do |category| %>
+          <li>
+            <input type="checkbox" name="category" value="<%= category.id %>"><%= category.name %></input>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ここに記事を表示 -->
+<div id="show-region" class="show-region">
+  <div class="show">
+    <ul>
+      <% @posts.each do |post| %>
+        <li class="post-show"><pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

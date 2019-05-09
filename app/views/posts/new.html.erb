@@ -3,41 +3,32 @@
     <input class="title-form" name="title" placeholder="タイトル">
   </div>
 
-  <div id="edit-main">
-    <!--- 投稿一覧やホームに戻るためのサイドバー -->
-    <div id="menu-all">
-      <div class="side-menu">
+  <!-- ここでタグやカテゴリの設定 -->
+  <div id="post-component">
+    <div class="side-component">
+      <input type="submit" value="投稿" class="update-post">
+      <div>公開状態</div>
+      <select id="post-status" name="post_status">
+        <option value="1">公開</option>
+        <option value="2">非公開</option>
+        <option value="3">下書き</option>
+      </select>
+      <div class="category-frame">
         <ul>
-          <li><%= link_to('ホームへ', '/') %></li>
-          <li><%= link_to('投稿一覧', '/posts/show') %></li>
-          <li>カテゴリー</li>
-          <li>タグ</li>
-          <li>お気に入り一覧</li>
+          <% @categorys.each do |category| %>
+            <li>
+              <input type="checkbox" name="category" value="<%= category.id %>"><%= category.name %></input>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
+  </div>
 
-    <!-- ここでタグやカテゴリの設定 -->
-    <div id="post-component">
-      <div class="side-component">
-        <input type="submit" value="投稿" class="update-post">
-        <div class="category-frame">
-          <ul>
-            <% @categorys.each do |category| %>
-              <li>
-                <input type="radio" name="category" value="<%= category.id %>"><%= category.name %></input>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- ここに記事を書く -->
-    <div id="edit-region" class="edit-region">
-      <div class="edit">
-        <textarea class="edit-textarea" name="content" cols="30" rows="40" placeholder="記事を書く"></textarea>
-      </div>
+  <!-- ここに記事を書く -->
+  <div id="edit-region" class="edit-region">
+    <div class="edit">
+      <textarea class="edit-textarea" name="content" cols="30" rows="40" placeholder="記事を書く"></textarea>
     </div>
   </div>
 <% end %>
