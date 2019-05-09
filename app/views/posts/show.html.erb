@@ -3,7 +3,10 @@
   <div class="show">
     <ul>
       <% @posts.each do |post| %>
-        <li class="post-show"><pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre></li>
+        <li class="post-show">
+          <p><%= post.title %></p>
+          <pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre>
+        </li>
       <% end %>
     </ul>
   </div>

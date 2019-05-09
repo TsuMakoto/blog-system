@@ -2,24 +2,30 @@ class PostsController < ApplicationController
   def new
     @user = User.find_by(id: params[:id])
     @post = Post.new
-    @categorys = Category.all
+    @categorys = Category.where(user_id: params[:id])
   end
 
   def create
     # カテゴリー未選択の場合、カテゴリー"なし"を追加
     if params[:category].nil?
-      create_none_category(params[:id])
-      params[:category] = Category.find_by(name: 'none').id
+      @none_category = Category.find_by(name: 'none', user_id: current_user.id)
+      @none_category = save_none_category(current_user.id) if @none_category.nil?
+      params[:category] = @none_category.id
     end
+
     @post = Post.new(
-      user_id: params[:id],
+      user_id: current_user.id,
       content: params[:content],
       title: params[:title],
       mst_status_id: params[:post_status].to_i,
       category_id: params[:category],
       post_time: Time.zone.today
     )
-    model_save_and_redirect("/posts/#{@post.user_id}/show", "/posts/#{@post.user_id}/new", @post)
+    model_save_and_redirect(
+      "/posts/#{@post.user_id}/show",
+      "/posts/#{@post.user_id}/new",
+      @post
+    )
   end
 
   def show
@@ -40,20 +46,14 @@ class PostsController < ApplicationController
   def update
   end
 
-  def category
-  end
-
   private
 
-  def create_none_category(user_id)
-    @none_category = Category.find_by(name: 'none')
-    if @none_category.nil?
-      @none_category = Category.new(
-        name: 'none',
-        parent_category_id: 0,
-        user_id: user_id
-      )
-      @none_category.save
-    end
+  def save_none_category(user_id)
+    @none_category = Category.new(
+      name: 'none',
+      parent_category_id: 0,
+      user_id: user_id
+    )
+    return @none_category if @none_category.save
   end
 end

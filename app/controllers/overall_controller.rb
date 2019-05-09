@@ -1,6 +1,6 @@
 class OverallController < ApplicationController
   def category
-    @parent_categorys = Category.where(parent_category_id: 0)
+    @parent_categorys = Category.where(user_id: current_user.id, parent_category_id: 0)
     @categorys = classify_category(@parent_categorys)
   end
 

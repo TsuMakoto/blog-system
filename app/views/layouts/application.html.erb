@@ -12,13 +12,13 @@
   <body>
     <div class="head-contents">
       <ul>
-        <li><%= link_to("ユーザ一覧", "/users/all") %></li>
         <li><%= link_to("投稿一覧", "/posts/show") %></li>
+        <li><%= link_to("ログアウト", "/users/sign_out") %></li>
       </ul>
     </div>
     <div class="main-content">
       <!--- 投稿一覧やホームに戻るための左サイドバー -->
-      <% if @is_disp_side %>
+      <% unless current_user.nil? %>
         <div id="left-menu-all">
           <div class="side-menu">
             <ul>
