@@ -25,7 +25,7 @@
       <li>
         <p><%= User.find(comment.user_id).user_id %></p>
         <pre><%= comment.content %></pre>
-        <% if current_user.id == comment.user_id %>
+        <% if !current_user.nil? && current_user.id == comment.user_id %>
           編集
           <%= link_to("削除", "/comment/#{comment.id}/destroy", {method: "post"}) %>
         <% end %>
@@ -33,3 +33,4 @@
     </ul>
   </div>
 <% end %>
+

@@ -22,9 +22,9 @@
         <div id="left-menu-all">
           <div class="side-menu">
             <ul>
-              <li><%= link_to('ホームへ', '/') %></li>
-              <li><%= link_to('自分の記事', "/posts/#{current_user.id}/show") %></li>
-              <li><%= link_to('新規作成', "/posts/1/new") %></li>
+              <li><%= link_to('ホームへ', "/#{current_user.user_id}") %></li>
+              <li><%= link_to('自分の記事', "/#{current_user.user_id}/posts/show") %></li>
+              <li><%= link_to('新規作成', "/posts/new") %></li>
               <li><%= link_to('カテゴリー', '/overall/category') %></li>
               <li>タグ</li>
               <li>お気に入り一覧</li>

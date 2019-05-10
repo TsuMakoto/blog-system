@@ -3,9 +3,13 @@ class HomeController < ApplicationController
     if current_user.nil?
       redirect_to('/users/sign_in')
     else
-      # サイドカラム を表示するかどうか
-      @posts = Post.where(user_id: current_user.id).order(created_at: 'DESC')
-      @comment_count = 0
+      redirect_to("/#{current_user.user_id}")
     end
+  end
+
+  def user
+    @user = User.find_by(user_id: params[:user_id])
+    @posts = Post.where(user_id: @user.id).order(created_at: 'DESC')
+    @comments = Post.joins(:comments).select('comments.*')
   end
 end

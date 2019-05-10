@@ -1,6 +1,6 @@
-<%= form_tag("/posts/#{@user.id}/create") do %>
+<%= form_tag("/posts/#{@post.id}/update") do %>
   <div id="edit-title">
-    <input class="title-form" name="title" placeholder="タイトル">
+    <input class="title-form" name="title" placeholder="タイトル" value="<%= @post.title %>">
   </div>
 
   <!-- ここでタグやカテゴリの設定 -->
@@ -28,7 +28,9 @@
   <!-- ここに記事を書く -->
   <div id="edit-region" class="edit-region">
     <div class="edit">
-      <textarea class="edit-textarea" name="content" cols="30" rows="40" placeholder="記事を書く"></textarea>
+      <textarea class="edit-textarea" name="content" cols="30" rows="40" placeholder="記事を書く">
+        <%= @post.content %>
+      </textarea>
     </div>
   </div>
 <% end %>

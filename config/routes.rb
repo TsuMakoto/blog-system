@@ -9,19 +9,23 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+  
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # 新規投稿画面
-  get 'posts/:id/new' => 'posts#new'
+  get 'posts/new' => 'posts#new'
   # 投稿編集画面
-  get 'posts/:id/edit' => 'posts#edit'
+  get 'posts/:post_id/edit' => 'posts#edit'
+  # 記事削除
+  post 'posts/:post_id/destroy' => 'posts#destroy'
   # 自分の記事一覧を表示
-  get 'posts/:id/show' => 'posts#myshow'
+  get ':user_id/posts/show' => 'posts#myposts'
   # 投稿一覧表示
   get 'posts/show' => 'posts#show'
   # 記事作成
-  post 'posts/:id/create' => 'posts#create'
+  post 'posts/create' => 'posts#create'
   # 記事更新
-  post 'posts/:id/update' => 'posts#update'
+  post 'posts/:post_id/update' => 'posts#update'
   # 記事表示
   get 'posts/:post_id/detail' => 'posts#detail'
 
@@ -35,6 +39,9 @@ Rails.application.routes.draw do
   # カテゴリーの追加
   post 'overall/category/new' => 'overall#new_cate'
 
-  # topページ表示
+  # ユーザのホーム画面表示
+  get '/:user_id' => 'home#user'
+  # トップの表示
   get '/' => 'home#top'
+
 end

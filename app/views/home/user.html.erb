@@ -1,0 +1,41 @@
+<% if @posts.empty? %>
+  <% if current_user.id == @user.id %>
+    <h3>最近の投稿</h3>
+    <div>最近の投稿はありません</div>
+    <div><%= link_to("初めての投稿をしましょう!", "/posts/#{current_user.id}/new") %></div>
+  <% else %>
+    <div>投稿はありません</div>
+  <% end %>
+<% else %>
+  <div class="recent">
+    <div class="post">
+      <h3>最近の投稿</h3>
+      <div class="recent-info">
+        <% @posts.each do |post| %>
+          <div class="post-time">
+            <p>日時:<%= post.post_time %></p>
+          </div>
+          <div class="post-title">
+            <p>タイトル:<%= post.title %></p>
+          </div>
+          <pre class="post-show"><%= post.content %></pre>
+        <% end %>
+      </div>
+    </div>
+    <div class="comment">
+      <h3>最近のコメント</h3>
+      <div class="recent-info">
+        <% @posts.each do |post| %>
+          <div class="post-title">
+            <p>タイトル:<%= post.title %></p>
+          </div>
+          <ul class="comment-list">
+            <% @comments.where(id: post.id).each do |comment| %>
+              <li class="comment"><%= comment.content %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

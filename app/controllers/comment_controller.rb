@@ -2,7 +2,7 @@ class CommentController < ApplicationController
   def new
     @post = Post.find(params[:post_id])
     if current_user.nil?
-      render("/posts/#{@post.id}/detail")
+      redirect_to('/users/sign_in')
     else
       @comment = Comment.new(
         user_id: current_user.id,
