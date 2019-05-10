@@ -4,4 +4,5 @@ class User < ApplicationRecord
   validates :user_id, uniqueness: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, password_length: 10..128
+  has_many :comments, dependent: :destroy
 end

@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def model_destroy_and_redirect(redirect_url, render_url, model)
+    if model.destroy
+      redirect_to(redirect_url)
+    else
+      render(render_url)
+    end
+  end
+
   def classify_category(parent_categorys)
     categorys = []
     stack = []

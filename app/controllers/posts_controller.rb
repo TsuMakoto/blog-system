@@ -49,25 +49,7 @@ class PostsController < ApplicationController
 
   def detail
     @post = Post.find_by(id: params[:post_id])
-  end
-
-  def comment
-    @post = Post.find_by(params[:id])
-    if current_user.nil?
-      render("/posts/#{@post.id}/detail")
-    else
-      @comment = Comment.new(
-        user_id: current_user.id,
-        post_id: @post.id,
-        block_flg: 0,
-        content: params[:comment]
-      )
-      model_save_and_redirect(
-        "/posts/#{@post.id}/detail",
-        "posts/#{@post.id}/detail",
-        @comment
-      )
-    end
+    @comments = Comment.where(post_id: @post.id)
   end
 
   private

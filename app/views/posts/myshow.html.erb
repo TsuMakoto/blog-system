@@ -14,11 +14,16 @@
 
 <!-- ここに記事を表示 -->
 <div id="show-region" class="show-region">
-  <div class="show">
-    <ul>
-      <% @posts.each do |post| %>
-        <li class="post-show"><pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre></li>
-      <% end %>
-    </ul>
-  </div>
+  <% if @posts.empty? %>
+    <div>まだ投稿はありません</div>
+    <div style="color:#fdffdf"><%= link_to("記事を投稿する", "/posts/#{current_user.id}/new") %></div>
+  <% else %>
+    <div class="show">
+      <ul>
+        <% @posts.each do |post| %>
+          <li class="post-show"><pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre></li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>

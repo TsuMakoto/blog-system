@@ -9,10 +9,27 @@
   </div>
 </div>
 
-<!-- ここにコメントを表示 -->
-<%= form_tag("/posts/#{@post.id}/comment") do %>
+<!-- ここにコメント記入欄を表示 -->
+<%= form_tag("/comment/#{@post.id}/new") do %>
   <div id="comment-region" class="comment-region">
     <textarea id="" name="comment" cols="30" rows="10" placeholder="コメントを記入してください"></textarea>
     <input type="submit" value="投稿">
+  </div>
+<% end %>
+
+<!-- ここにコメントを表示 -->
+<h3>コメント</h3>
+<% @comments.each do |comment| %>
+  <div id="comment-show-region">
+    <ul class="comment-show-list">
+      <li>
+        <p><%= User.find(comment.user_id).user_id %></p>
+        <pre><%= comment.content %></pre>
+        <% if current_user.id == comment.user_id %>
+          編集
+          <%= link_to("削除", "/comment/#{comment.id}/destroy", {method: "post"}) %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 <% end %>
