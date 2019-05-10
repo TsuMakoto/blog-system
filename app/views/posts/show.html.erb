@@ -5,9 +5,10 @@
       <% @posts.each do |post| %>
         <li class="post-show">
           <p><%= post.title %></p>
-          <pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre>
+          <pre><%= link_to(post.content, "/posts/#{post.id}/detail") %></pre>
+          <p>コメント件数：<%= @comment_count[post.id].nil? ? 0 : @comment_count[post.id] %></p>
         </li>
       <% end %>
     </ul>
   </div>
-</div>
+</div

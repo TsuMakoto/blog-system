@@ -1,0 +1,18 @@
+<div id="edit-title">
+  <h1 class="title"><%= @post.title %></h1>
+</div>
+
+<!-- ここに記事を表示 -->
+<div id="post-region" class="post-region">
+  <div class="post-detail">
+    <pre class="post-content"><%= @post.content %></pre>
+  </div>
+</div>
+
+<!-- ここにコメントを表示 -->
+<%= form_tag("/posts/#{@post.id}/comment") do %>
+  <div id="comment-region" class="comment-region">
+    <textarea id="" name="comment" cols="30" rows="10" placeholder="コメントを記入してください"></textarea>
+    <input type="submit" value="投稿">
+  </div>
+<% end %>

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   post 'posts/:id/create' => 'posts#create'
   # 記事更新
   post 'posts/:id/update' => 'posts#update'
+  # 記事表示
+  get 'posts/:post_id/detail' => 'posts#detail'
+  # コメント投稿
+  post 'posts/:post_id/comment' => 'posts#comment'
 
   # カテゴリー一覧表示
   get 'overall/category' => 'overall#category'
