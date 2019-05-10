@@ -7,7 +7,8 @@ class OverallController < ApplicationController
   def new_cate
     @category = Category.new(
       name: params[:new_categrory],
-      parent_category_id: params[:parent].to_i
+      parent_category_id: params[:parent].to_i,
+      user_id: current_user.id
     )
     model_save_and_redirect('/overall/category', '/overall/category', @category)
   end
