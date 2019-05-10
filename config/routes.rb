@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   post 'comment/:post_id/new' => 'comment#new'
 # コメント削除
   post 'comment/:comment_id/destroy' => 'comment#destroy'
+  # コメント編集
+  post 'comment/:comment_id/update' => 'comment#update'
 
   # カテゴリー一覧表示
   get 'overall/category' => 'overall#category'

@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def myposts
     redirect_to("/#{current_user.user_id}/posts/show") if current_user.user_id != params[:user_id]
 
-    @user = User.find_by(user_id: params[:user_id])
+    @user = User.find_by(user_id: current_user.user_id)
     @posts = Post.where(user_id: @user.id)
     @categorys = Category.where(user_id: params[:id].to_i)
   end
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
     @post.category_id = params[:category]
 
     model_save_and_redirect(
-      "/posts/#{@post.user_id}/show",
+      "/#{@post.user_id}/posts/show",
       "/posts/#{@post.id}/edit",
       @post
     )

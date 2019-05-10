@@ -1,3 +1,21 @@
 // Place all the styles related to the comment controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 記事詳細画面にてコメント編集領域のスタイル
+
+.edit-comment {
+  cursor: pointer;
+  display: inline;
+}
+
+.edit-close {
+  cursor: pointer;
+  display: inline;
+}
+
+
+.hidden {
+  display: none; 
+}
+

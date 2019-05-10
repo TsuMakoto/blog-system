@@ -1,3 +1,21 @@
+<script>
+  function editComment(comment_id) {
+    var comment_area = $('#edit-comment-area' + comment_id);
+    comment_area.removeClass('hidden');
+
+    var comment_display = $('#comment-content-' + comment_id);
+    comment_display.addClass('hidden');
+  }
+
+  function closeComment(comment_id) {
+    var comment_area = $('#edit-comment-area' + comment_id);
+    comment_area.addClass('hidden');
+
+    var comment_display = $('#comment-content-' + comment_id);
+    comment_display.removeClass('hidden');
+  }
+</script>
+
 <div id="edit-title">
   <h1 class="title"><%= @post.title %></h1>
 </div>
@@ -19,18 +37,24 @@
 
 <!-- ここにコメントを表示 -->
 <h3>コメント</h3>
-<% @comments.each do |comment| %>
-  <div id="comment-show-region">
-    <ul class="comment-show-list">
+<div class="comment-show-region">
+  <ul class="comment-show-list">
+    <% @comments.each do |comment| %>
       <li>
         <p><%= User.find(comment.user_id).user_id %></p>
-        <pre><%= comment.content %></pre>
+        <pre id="<%= "comment-content-#{comment.id}" %>"><%= comment.content %></pre>
         <% if !current_user.nil? && current_user.id == comment.user_id %>
-          編集
+          <div id="<%= "edit-comment-area#{comment.id}" %>" class="hidden">
+            <%= form_tag("/comment/#{comment.id}/update") do %>
+              <textarea  name="update_comment" cols="30" rows="10"><%= comment.content %></textarea>
+              <input type="submit" value="更新">
+              <div class="edit-close" onclick="closeComment(<%= "#{comment.id}" %>)">キャンセル</div>
+            <% end %>
+          </div>
+          <div class="edit-comment" onclick="editComment(<%= "#{comment.id}" %>)">編集</div>
           <%= link_to("削除", "/comment/#{comment.id}/destroy", {method: "post"}) %>
         <% end %>
       </li>
-    </ul>
-  </div>
-<% end %>
-
+    <% end %>
+  </ul>
+</div> 

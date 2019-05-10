@@ -21,7 +21,22 @@ class CommentController < ApplicationController
   def destroy
     @comment = Comment.find(params[:comment_id])
     @post = Post.find(@comment.post_id)
-    model_destroy_and_redirect("/posts/#{@post.id}/detail", "/posts/#{@post.id}/detail", @comment)
+    model_destroy_and_redirect(
+      "/posts/#{@post.id}/detail",
+      "/posts/#{@post.id}/detail",
+      @comment
+    )
   end
 
+  def update
+    @comment = Comment.find(params[:comment_id])
+    @comment.content = params[:update_comment]
+    @post = Post.find(@comment.post_id)
+
+    model_save_and_redirect(
+      "/posts/#{@post.id}/detail",
+      "posts/#{@post.id}/detail",
+      @comment
+    )
+  end
 end
