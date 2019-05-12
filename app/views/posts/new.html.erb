@@ -8,12 +8,14 @@
     <div class="side-component">
       <input type="submit" value="投稿" class="update-post">
       <div>公開状態</div>
-      <select id="post-status" name="post_status">
+      <select class="post-status" name="post_status">
         <option value="1">公開</option>
         <option value="2">非公開</option>
         <option value="3">下書き</option>
       </select>
       <div class="category-frame">
+        <div>カテゴリー名</div>
+        
         <ul>
           <% @categorys.each do |category| %>
             <li>

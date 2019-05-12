@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # モデルのセーブを実行し,指定のURLへリダイレクト
+  # ==== Args
+  # redirect_url :: リダイレクト先URL
+  # render_url :: モデルの保存に失敗した時のレンダー先
+  # model :: 保存したいモデル
   def model_save_and_redirect(redirect_url, render_url, model)
     if model.save
       redirect_to(redirect_url)
@@ -12,6 +17,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # モデルの削除を実行し,指定のURLへリダイレクト
+  # ==== Args
+  # redirect_url :: リダイレクト先URL
+  # render_url :: モデルの削除に失敗した時のレンダー先
+  # model :: 削除したいモデル
   def model_destroy_and_redirect(redirect_url, render_url, model)
     if model.destroy
       redirect_to(redirect_url)
@@ -20,6 +30,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # カテゴリーを階層分けするメソッド
+  #
+  # ==== Args
+  # parent_categorys :: 親カテゴリのリスト
+  # ==== Return
+  # 階層分けされたカテゴリのリスト
   def classify_category(parent_categorys)
     categorys = []
     stack = []

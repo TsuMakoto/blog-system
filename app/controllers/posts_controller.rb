@@ -1,10 +1,15 @@
 class PostsController < ApplicationController
+
+  # GET /posts/new
+  # 記事の新規投稿画面
   def new
     @categorys = Category.where(user_id: current_user.id)
   end
 
+  # POST /posts/create
+  # 新規記事投稿
   def create
-    # カテゴリー未選択の場合、カテゴリー"なし"を追加
+    # カテゴリー未選択の場合、カテゴリー"none"を追加
     if params[:category].nil?
       @none_category = Category.find_by(name: 'none', user_id: current_user.id)
       @none_category = save_none_category(current_user.id) if @none_category.nil?
@@ -26,11 +31,15 @@ class PostsController < ApplicationController
     )
   end
 
+  # GET /posts/show
+  # 記事一覧を表示
   def show
     @posts = Post.all.order(created_at: :desc)
     @comment_count = Post.joins(:comments).group('comments.post_id').count
   end
 
+  # GET /posts/:user_id/show
+  # 自分の記事を表示
   def myposts
     redirect_to("/#{current_user.user_id}/posts/show") if current_user.user_id != params[:user_id]
 
@@ -45,6 +54,8 @@ class PostsController < ApplicationController
     @categorys = Category.where(user_id: @user.id)
   end
 
+  # POST /posts/:post_id/update
+  # 記事の更新
   def update
     # カテゴリー未選択の場合、カテゴリー"なし"を追加
     if params[:category].nil?
@@ -66,15 +77,19 @@ class PostsController < ApplicationController
     )
   end
 
+  # POST /posts/:post_id/destroy
+  # 記事の削除
   def destroy
     @post = Post.find(params[:post_id])
     model_destroy_and_redirect(
-      "/posts/#{@post.user_id}/show",
-      "/posts/#{@post.user_id}/show",
+      "/#{@post.user_id}/posts/show",
+      "/#{@post.user_id}/post/sshow",
       @post
     )
   end
 
+  # GET /post/:post_id/detail
+  # 記事の詳細を表示
   def detail
     @post = Post.find_by(id: params[:post_id])
     @comments = Comment.where(post_id: @post.id)
@@ -82,6 +97,8 @@ class PostsController < ApplicationController
 
   private
 
+  # カテゴリー未選択で、登録済みカテゴリがない場合、
+  # noneとしてカテゴリを登録
   def save_none_category(user_id)
     @none_category = Category.new(
       name: 'none',

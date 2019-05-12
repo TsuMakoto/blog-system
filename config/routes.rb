@@ -37,9 +37,9 @@ Rails.application.routes.draw do
   post 'comment/:comment_id/update' => 'comment#update'
 
   # カテゴリー一覧表示
-  get 'overall/category' => 'overall#category'
+  get 'category/all' => 'category#all'
   # カテゴリーの追加
-  post 'overall/category/new' => 'overall#new_cate'
+  post 'category/new' => 'category#new'
 
   # ユーザのホーム画面表示
   get '/:user_id' => 'home#user'

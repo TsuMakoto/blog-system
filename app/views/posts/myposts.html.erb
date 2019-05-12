@@ -16,13 +16,13 @@
 <div id="show-region" class="show-region">
   <% if @posts.empty? %>
     <div>まだ投稿はありません</div>
-    <div style="color:#fdffdf"><%= link_to("記事を投稿する", "/posts/#{current_user.id}/new") %></div>
+    <div><%= link_to("記事を投稿する", "/posts/new") %></div>
   <% else %>
     <div class="show">
       <ul>
         <% @posts.each do |post| %>
           <li class="post-show">
-            <pre><%= link_to(post.content, "/posts/#{post.id}/edit") %></pre>
+            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}/detail") %></div>
             <%= link_to("編集", "/posts/#{post.id}/edit") %>
             <%= link_to("削除", "/posts/#{post.id}/destroy", {method: "post"}) %>
           </li>

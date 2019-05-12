@@ -1,4 +1,7 @@
 class CommentController < ApplicationController
+
+  # POST /comment/:post_id/new
+  # コメントの新規投稿
   def new
     @post = Post.find(params[:post_id])
     if current_user.nil?
@@ -18,6 +21,8 @@ class CommentController < ApplicationController
     end
   end
 
+  # POST /comment/:comment_id/destroy
+  # コメントの削除
   def destroy
     @comment = Comment.find(params[:comment_id])
     @post = Post.find(@comment.post_id)
@@ -28,6 +33,8 @@ class CommentController < ApplicationController
     )
   end
 
+  # POST /comment/:comment_id/update
+  # コメントの更新
   def update
     @comment = Comment.find(params[:comment_id])
     @comment.content = params[:update_comment]

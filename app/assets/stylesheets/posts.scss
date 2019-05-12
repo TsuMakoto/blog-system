@@ -12,8 +12,9 @@
 /* 右サイドメニュー */
 #post-component {
   right: 0px;
-  position: fixed;
+  position: absolute;
   width: 15%;
+  padding: 0px 15px;
 }
 
 /* タイトルのフォームのスタイル */
@@ -47,8 +48,20 @@
   margin-top: 20px;
 }
 
-.category-frame {
+.post-status {
+  position: relative;
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 10px 10px 0;
+  font-size: 18px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0, 0.3);
+}
 
+.category-frame {
+  margin: 20px 0px;
 }
 
 .category-frame ul {
@@ -61,13 +74,14 @@
   font-size: 1.2em;
   background-color: #1b95e0;
   color: #fff;
+  margin: 20px 0px ;
 }
 /* ************** 記事投稿画面スタイル定義 ************** */
 
 /* ************** 記事投稿一覧スタイル定義 ************** */
 #show-region {
   width: 80%;
-  height: 240px; // TODO: 記事画面の高さを調整する
+  height: 240px;
 }
 
 #show-region a {
@@ -78,11 +92,11 @@
 
 #show-region ul {
   list-style: none;
+  background-color: #fff;
 }
 
 #show-region li {
   border: 1px solid #000;
-  margin: 10px;
   padding: 10px;
 }
 
@@ -91,4 +105,108 @@
   height: 4.5em;
   line-height: 1.5em;
 }
+
+#show-region .user_info a {
+  font-size: 0.8em;
+}
+
+#show-region .post-title {
+  border-bottom: 1px solid #cccccc;
+}
+
+#show-region .post-title a {
+  font-size: 1.2em;
+}
 /* ************** 記事投稿一覧スタイル定義 ************** */
+
+
+/* ************** 記事投稿詳細スタイル定義 ************** */
+#detail-posts-region {
+  background-color: #fff;
+  margin-bottom: 20px;
+  margin-right: 60px;
+  padding: 20px;
+}
+
+#detail-posts-region .title {
+  font-size: 3em;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+#detail-posts-region .post-content {
+  font-size: 1.2em;
+}
+
+.comment-region {
+  margin-right:60px;
+  margin-bottom: 60px;
+}
+
+.comment-region textarea {
+  width: 100%;
+  padding: 10px;
+}
+
+.comment-region input[type="submit"] {
+  position: absolute;
+  right: 60px;
+  padding: 5px 20px;
+  font-size: 1.2em;
+  background-color: #1b95e0;
+  color: #fff;
+}
+
+.comment-show-region {
+  margin-right: 60px;
+  margin-bottom: 60px;
+}
+
+.comment-show-region textarea {
+  width: 100%;
+  padding: 10px;
+}
+
+.comment-show-region li {
+  margin-bottom: 30px;
+}
+
+.comment-show-region .comment-update-form {
+  position: absolute;
+  right: 60px;
+}
+
+.comment-show-region .comment-edit-form {
+  position: absolute;
+  right: 60px;
+}
+
+.comment-show-region .update-comment-area {
+  margin-bottom: 40px;
+}
+
+.comment-show-region .edit-comment-area, .comment-show-region textarea  {
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #cccccc;
+}
+
+.comment-show-region input[type="submit"] {
+  background-color: inherit;
+  border: none;
+  font-size: 1em;
+  color: #5e5e5e;
+}
+
+.comment-show-region ul {
+  list-style: none;
+}
+
+.comment-show-region .edit-comment {
+  color: #0000ee;
+  text-decoration-line: underline;
+}
+/* ************** 記事投稿詳細スタイル定義 ************** */

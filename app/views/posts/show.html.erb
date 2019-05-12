@@ -3,9 +3,11 @@
   <div class="show">
     <ul>
       <% @posts.each do |post| %>
+        <% user = User.find(post.user_id) %>
         <li class="post-show">
-          <p><%= post.title %></p>
-          <pre><%= link_to(post.content, "/posts/#{post.id}/detail") %></pre>
+          <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}/detail") %></div>
+          <pre><%= post.content %></pre>
+          <p class="user_info"><%= link_to("by #{user.user_id}", "/#{user.user_id}") %></p>
           <p>コメント件数：<%= @comment_count[post.id].nil? ? 0 : @comment_count[post.id] %></p>
         </li>
       <% end %>

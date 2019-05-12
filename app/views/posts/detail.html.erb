@@ -1,4 +1,5 @@
 <script>
+  // コメント編集ボタンを押した時のボタンアクション
   function editComment(comment_id) {
     var comment_area = $('#edit-comment-area' + comment_id);
     comment_area.removeClass('hidden');
@@ -7,6 +8,7 @@
     comment_display.addClass('hidden');
   }
 
+  // コメント編集キャンセルボタンを押した時のボタンアクション
   function closeComment(comment_id) {
     var comment_area = $('#edit-comment-area' + comment_id);
     comment_area.addClass('hidden');
@@ -16,17 +18,55 @@
   }
 </script>
 
-<div id="edit-title">
-  <h1 class="title"><%= @post.title %></h1>
-</div>
-
-<!-- ここに記事を表示 -->
-<div id="post-region" class="post-region">
-  <div class="post-detail">
-    <pre class="post-content"><%= @post.content %></pre>
+<article id="detail-posts-region">
+  <div id="post-title">
+    <h1 class="title"><%= @post.title %></h1>
   </div>
-</div>
 
+  <!-- ここに記事を表示 -->
+  <div id="post-region" class="post-region">
+    <div class="post-detail">
+      <pre class="post-content"><%= @post.content %></pre>
+    </div>
+  </div>
+</article>
+
+<!-- ここにコメントを表示 -->
+<h3>コメント</h3>
+<div class="comment-show-region">
+  <ul class="comment-show-list">
+    <% @comments.each do |comment| %>
+      <% comment_user = User.find(comment.user_id) %>
+      <li>
+        <p><%= link_to(comment_user.user_id, "/#{comment_user.user_id}") %></p>
+        <div id="<%= "comment-content-#{comment.id}" %>">
+          <pre class="edit-comment-area"><%= comment.content %></pre>
+          <div class="comment-edit-form">
+            <% if user_signed_in? %>
+              <% if current_user.id == comment.user_id %>
+                <div class="edit-comment" onclick="editComment(<%= "#{comment.id}" %>)">編集</div>
+              <% end %>
+              <% if (current_user.id == @post.user_id || current_user.id == comment.user_id)%>
+                <%= link_to("削除", "/comment/#{comment.id}/destroy", {method: "post"}) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <% if user_signed_in? && current_user.id == comment.user_id %>
+          <div id="<%= "edit-comment-area#{comment.id}" %>" class="update-comment-area hidden">
+            <%= form_tag("/comment/#{comment.id}/update") do %>
+              <textarea  name="update_comment" cols="30" rows="10"><%= comment.content %></textarea>
+              <div class="comment-update-form">
+                <input type="submit" value="更新">
+                <div class="edit-close" onclick="closeComment(<%= "#{comment.id}" %>)">キャンセル</div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div> 
 <!-- ここにコメント記入欄を表示 -->
 <%= form_tag("/comment/#{@post.id}/new") do %>
   <div id="comment-region" class="comment-region">
@@ -34,27 +74,3 @@
     <input type="submit" value="投稿">
   </div>
 <% end %>
-
-<!-- ここにコメントを表示 -->
-<h3>コメント</h3>
-<div class="comment-show-region">
-  <ul class="comment-show-list">
-    <% @comments.each do |comment| %>
-      <li>
-        <p><%= User.find(comment.user_id).user_id %></p>
-        <pre id="<%= "comment-content-#{comment.id}" %>"><%= comment.content %></pre>
-        <% if !current_user.nil? && current_user.id == comment.user_id %>
-          <div id="<%= "edit-comment-area#{comment.id}" %>" class="hidden">
-            <%= form_tag("/comment/#{comment.id}/update") do %>
-              <textarea  name="update_comment" cols="30" rows="10"><%= comment.content %></textarea>
-              <input type="submit" value="更新">
-              <div class="edit-close" onclick="closeComment(<%= "#{comment.id}" %>)">キャンセル</div>
-            <% end %>
-          </div>
-          <div class="edit-comment" onclick="editComment(<%= "#{comment.id}" %>)">編集</div>
-          <%= link_to("削除", "/comment/#{comment.id}/destroy", {method: "post"}) %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div> 

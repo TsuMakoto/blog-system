@@ -11,21 +11,29 @@
 
   <body>
     <div class="head-contents">
-      <ul>
-        <li><%= link_to("投稿一覧", "/posts/show") %></li>
-        <li><%= link_to("ログアウト", "/users/sign_out") %></li>
-      </ul>
+      <div class="navbar">
+        <ul class="nav">
+          <% if user_signed_in? %>
+            <li><%= link_to('ホームへ', "/#{current_user.user_id}") %></li>
+            <li class="active"><%= link_to("投稿一覧", "/posts/show") %></li>
+            <li><%= link_to("ログアウト", "/users/sign_out") %></li>
+          <% else %>
+            <li><%= link_to("投稿一覧", "/posts/show") %></li>
+            <li><%= link_to("ログイン", "/users/sign_in") %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+
     <div class="main-content">
       <!--- 投稿一覧やホームに戻るための左サイドバー -->
-      <% unless current_user.nil? %>
+      <% if user_signed_in? %>
         <div id="left-menu-all">
           <div class="side-menu">
             <ul>
-              <li><%= link_to('ホームへ', "/#{current_user.user_id}") %></li>
               <li><%= link_to('自分の記事', "/#{current_user.user_id}/posts/show") %></li>
               <li><%= link_to('新規作成', "/posts/new") %></li>
-              <li><%= link_to('カテゴリー', '/overall/category') %></li>
+              <li>カテゴリー</li>
               <li>タグ</li>
               <li>お気に入り一覧</li>
             </ul>
