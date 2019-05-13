@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   # 新規記事投稿
   def create
     # カテゴリー未選択の場合、カテゴリー"none"を追加
+    # TODO: カテゴリ選択ができるように実装
+    # 今は全てnoneで登録
     if params[:category].nil?
       @none_category = Category.find_by(name: 'none', user_id: current_user.id)
       @none_category = save_none_category(current_user.id) if @none_category.nil?
@@ -91,7 +93,7 @@ class PostsController < ApplicationController
   # GET /post/:post_id/detail
   # 記事の詳細を表示
   def detail
-    @post = Post.find_by(id: params[:post_id])
+    @post = Post.find(params[:post_id])
     @comments = Comment.where(post_id: @post.id)
   end
 

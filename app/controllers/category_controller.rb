@@ -1,5 +1,4 @@
 class CategoryController < ApplicationController
-
   # GET /category/all
   # カテゴリの一覧を表示
   def all

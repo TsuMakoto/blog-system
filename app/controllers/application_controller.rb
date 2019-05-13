@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   # カテゴリーを階層分けするメソッド
-  #
+  # 
   # ==== Args
   # parent_categorys :: 親カテゴリのリスト
   # ==== Return

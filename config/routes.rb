@@ -37,9 +37,10 @@ Rails.application.routes.draw do
   post 'comment/:comment_id/update' => 'comment#update'
 
   # カテゴリー一覧表示
-  get 'category/all' => 'category#all'
+  # TODO: カテゴリー付けをする機能をつける
+  # get 'category/all' => 'category#all'
   # カテゴリーの追加
-  post 'category/new' => 'category#new'
+  # post 'category/new' => 'category#new'
 
   # ユーザのホーム画面表示
   get '/:user_id' => 'home#user'
