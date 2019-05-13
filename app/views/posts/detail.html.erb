@@ -54,10 +54,10 @@
         </div>
         <% if user_signed_in? && current_user.id == comment.user_id %>
           <div id="<%= "edit-comment-area#{comment.id}" %>" class="update-comment-area hidden">
-            <%= form_tag("/comment/#{comment.id}/update") do %>
-              <textarea  name="update_comment" cols="30" rows="10"><%= comment.content %></textarea>
+            <%= form_with(url: "/comment/#{comment.id}/update") do |f| %>
+              <%= f.text_area :update_comment, value: comment.content, size: "30x10" %>
               <div class="comment-update-form">
-                <input type="submit" value="更新">
+                <%= f.submit "更新" %>
                 <div class="edit-close" onclick="closeComment(<%= "#{comment.id}" %>)">キャンセル</div>
               </div>
             <% end %>
@@ -68,9 +68,9 @@
   </ul>
 </div> 
 <!-- ここにコメント記入欄を表示 -->
-<%= form_tag("/comment/#{@post.id}/new") do %>
+<%= form_with(url: "/comment/#{@post.id}/new") do |f| %>
   <div id="comment-region" class="comment-region">
-    <textarea id="" name="comment" cols="30" rows="10" placeholder="コメントを記入してください"></textarea>
-    <input type="submit" value="投稿">
+    <%= f.text_area :comment, id: "new-comment-area",  size: "30x10", placeholder: "コメントを記入してください" %>
+    <%= f.submit "投稿" %>
   </div>
 <% end %>
