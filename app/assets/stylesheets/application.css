@@ -44,7 +44,7 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: #ffffff;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   border-bottom: 2px solid #cccccc;
 }
 
@@ -68,6 +68,17 @@ body {
   display: inline;
 }
 
+.flash {
+  position: absolute;
+  margin-left: 20%;
+  transform: translateY(-50px);
+  padding: 10px;
+  border-left: 3px solid;
+  border-left-color: #7fbfff;
+  background-color: #e5f2ff;
+  width: 100%;
+}
+
 /* 左サイドメニュー*/
 #left-menu-all {
   float: left;
@@ -77,7 +88,7 @@ body {
   padding-right: 20px;
   height: 100%;
   width: 20%;
-  transform: translateY(-40px);
+  transform: translateY(-50px);
   background-color: #efffef;
 
 }

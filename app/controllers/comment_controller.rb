@@ -15,7 +15,8 @@ class CommentController < ApplicationController
       model_save_and_redirect(
         "/posts/#{@post.id}/detail",
         "posts/#{@post.id}/detail",
-        @comment
+        @comment,
+        'コメントを投稿しました'
       )
     end
   end
@@ -28,7 +29,8 @@ class CommentController < ApplicationController
     model_destroy_and_redirect(
       "/posts/#{@post.id}/detail",
       "/posts/#{@post.id}/detail",
-      @comment
+      @comment,
+      'コメントを削除しました'
     )
   end
 
@@ -42,7 +44,8 @@ class CommentController < ApplicationController
     model_save_and_redirect(
       "/posts/#{@post.id}/detail",
       "posts/#{@post.id}/detail",
-      @comment
+      @comment,
+      'コメントを更新しました'
     )
   end
 end

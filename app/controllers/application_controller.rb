@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   # redirect_url :: リダイレクト先URL
   # render_url :: モデルの保存に失敗した時のレンダー先
   # model :: 保存したいモデル
-  def model_save_and_redirect(redirect_url, render_url, model)
+  def model_save_and_redirect(redirect_url, render_url, model, success_message)
     if model.save
-      redirect_to(redirect_url)
+      redirect_to(redirect_url, notice: success_message)
     else
       render(render_url)
     end
@@ -22,10 +22,11 @@ class ApplicationController < ActionController::Base
   # redirect_url :: リダイレクト先URL
   # render_url :: モデルの削除に失敗した時のレンダー先
   # model :: 削除したいモデル
-  def model_destroy_and_redirect(redirect_url, render_url, model)
+  def model_destroy_and_redirect(redirect_url, render_url, model, success_message)
     if model.destroy
-      redirect_to(redirect_url)
+      redirect_to(redirect_url, notice: success_message)
     else
+      flush[:error] = failure_message
       render(render_url)
     end
   end

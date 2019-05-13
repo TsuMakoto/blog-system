@@ -28,7 +28,8 @@ class PostsController < ApplicationController
     model_save_and_redirect(
       "/#{current_user.user_id}/posts/show",
       '/posts/new',
-      @post
+      @post,
+      '投稿に成功しました'
     )
   end
 
@@ -74,7 +75,8 @@ class PostsController < ApplicationController
     model_save_and_redirect(
       "/#{@post.user_id}/posts/show",
       "/posts/#{@post.id}/edit",
-      @post
+      @post,
+      '記事を更新しました'
     )
   end
 
@@ -85,7 +87,8 @@ class PostsController < ApplicationController
     model_destroy_and_redirect(
       "/#{@post.user_id}/posts/show",
       "/#{@post.user_id}/post/sshow",
-      @post
+      @post,
+      "記事「#{@post.title}」を削除しました"
     )
   end
 

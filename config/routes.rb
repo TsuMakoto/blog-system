@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   
   # 記事投稿に関するrouting
-  resource :posts, except: [:index, :destroy, :show]
+  resource :posts, except: [:index, :destroy]
   # 記事削除
   post 'posts/:post_id/destroy' => 'posts#destroy'
+  # 記事編集
+  get 'posts/:post_id/edit' => 'posts#edit'
   # 自分の記事一覧を表示
   get ':user_id/posts/show' => 'posts#myposts'
   # 記事更新

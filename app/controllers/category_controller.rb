@@ -14,6 +14,11 @@ class CategoryController < ApplicationController
       parent_category_id: params[:parent].to_i,
       user_id: current_user.id
     )
-    model_save_and_redirect('/category/new', '/category/new', @category)
+    model_save_and_redirect(
+      '/category/new',
+      '/category/new',
+      @category,
+      'カテゴリーを追加しました'
+    )
   end
 end

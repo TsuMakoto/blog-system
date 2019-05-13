@@ -15,16 +15,21 @@
         <ul class="nav">
           <% if user_signed_in? %>
             <li><%= link_to('ホームへ', "/#{current_user.user_id}") %></li>
-            <li class="active"><%= link_to("投稿一覧", "/posts/show") %></li>
+            <li class="active"><%= link_to("投稿一覧", "/posts") %></li>
             <li><%= link_to("ログアウト", "/users/sign_out") %></li>
           <% else %>
-            <li><%= link_to("投稿一覧", "/posts/show") %></li>
+            <li><%= link_to("投稿一覧", "/posts") %></li>
             <li><%= link_to("ログイン", "/users/sign_in") %></li>
           <% end %>
         </ul>
       </div>
     </div>
-
+    <!-- success message -->
+    <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <div class="main-content">
       <!--- 投稿一覧やホームに戻るための左サイドバー -->
       <% if user_signed_in? %>
