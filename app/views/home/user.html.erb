@@ -7,35 +7,34 @@
     <div>投稿はありません</div>
   <% end %>
 <% else %>
-  <div class="recent">
-    <div class="post">
+  <div id="myhome">
+    <div id="show-region">
       <h3>最近の投稿</h3>
-      <div class="recent-info">
+      <ul>
         <% @posts.each do |post| %>
-          <div class="post-time">
-            <p>投稿時間:<%= post.post_time %></p>
-          </div>
-          <div class="post-title">
-            <p>タイトル:<%= post.title %></p>
-          </div>
-          <pre class="post-show"><%= post.content %></pre>
+          <li class="post-show">
+            <div class="post-time"><p>投稿時間:<%= post.post_time %></p></div>
+            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}/detail") %></div>
+            <pre><%= post.content %></pre>
+          </li>
         <% end %>
-      </div>
+      </ul>
     </div>
-    <div class="comment">
-      <h3>最近のコメント</h3>
-      <div class="recent-info">
-        <% @posts.each do |post| %>
-          <div class="post-title">
-            <p>タイトル:<%= post.title %></p>
-          </div>
-          <ul class="comment-list">
-            <% @comments.where(id: post.id).each do |comment| %>
-              <li class="comment"><%= comment.content %></li>
-            <% end %>
-          </ul>
+    <h3>最近のコメント</h3>
+    <div class="comment-show-region">
+      <ul class="comment-show-list">
+        <% @comments.each do |comment| %>
+          <% post = Post.find(comment.post_id) %>
+          <% comment_user = User.find(comment.user_id) %>
+          <li class="edit-comment-area">
+            <div class="post-title">
+              <p><b>記事タイトル : </b><%= post.title %></p>
+            </div>
+            <%= comment.content %>
+            <p style="text-align: right">by <%= link_to("#{comment_user.user_id}", "/#{comment_user.user_id}") %></p>
+          </li>
         <% end %>
-      </div>
+      </ul>
     </div>
   </div>
 <% end %>

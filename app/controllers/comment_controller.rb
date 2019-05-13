@@ -1,5 +1,4 @@
 class CommentController < ApplicationController
-
   # POST /comment/:post_id/new
   # コメントの新規投稿
   def new

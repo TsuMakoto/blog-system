@@ -86,3 +86,16 @@ body {
   margin-left: 25%;
   width: 75%;
 }
+
+#myhome>#show-region {
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+#myhome>#show-region ul {
+  margin-right: 60px;
+}
+
+#myhome .comment-show-region .post-title {
+	border-bottom: 1px solid #cccccc;
+}

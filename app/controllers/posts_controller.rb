@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   # GET /posts/new
   # 記事の新規投稿画面
   def new

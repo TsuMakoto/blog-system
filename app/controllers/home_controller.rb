@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   # ユーザのホームを表示
   def user
     @user = User.find_by(user_id: params[:user_id])
-    @posts = Post.where(user_id: @user.id).order(created_at: 'DESC')
-    @comments = Post.joins(:comments).select('comments.*')
+    @posts = Post.where(user_id: @user.id).order(created_at: 'desc').limit(5)
+    @comments = Comment.all.order(created_at: 'desc').limit(5)
   end
 end
