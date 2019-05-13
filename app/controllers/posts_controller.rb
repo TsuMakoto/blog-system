@@ -11,18 +11,18 @@ class PostsController < ApplicationController
     # カテゴリー未選択の場合、カテゴリー"none"を追加
     # TODO: カテゴリ選択ができるように実装
     # 今は全てnoneで登録
-    if params[:category].nil?
+    if params[:category_id] == '0'
       @none_category = Category.find_by(name: 'none', user_id: current_user.id)
       @none_category = save_none_category(current_user.id) if @none_category.nil?
-      params[:category] = @none_category.id
+      params[:category_id] = @none_category.id
     end
 
     @post = Post.new(
       user_id: current_user.id,
       content: params[:content],
       title: params[:title],
-      mst_status_id: params[:post_status].to_i,
-      category_id: params[:category],
+      mst_status_id: params[:mst_status_id].to_i,
+      category_id: params[:category_id],
       post_time: Time.zone.today
     )
     model_save_and_redirect(
@@ -59,17 +59,17 @@ class PostsController < ApplicationController
   # 記事の更新
   def update
     # カテゴリー未選択の場合、カテゴリー"なし"を追加
-    if params[:category].nil?
+    if params[:post][:category] == '0'
       @none_category = Category.find_by(name: 'none', user_id: current_user.id)
       @none_category = save_none_category(current_user.id) if @none_category.nil?
-      params[:category] = @none_category.id
+      params[:post][:category] = @none_category.id
     end
 
     @post = Post.find(params[:post_id])
-    @post.content = params[:content]
-    @post.title = params[:title]
-    @post.mst_status_id = params[:post_status]
-    @post.category_id = params[:category]
+    @post.content = params[:post][:content]
+    @post.title = params[:post][:title]
+    @post.mst_status_id = params[:post][:mst_status_id]
+    @post.category_id = params[:post][:category_id]
 
     model_save_and_redirect(
       "/#{@post.user_id}/posts/show",

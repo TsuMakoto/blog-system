@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # 記事作成
   post 'posts/create' => 'posts#create'
   # 記事更新
-  post 'posts/:post_id/update' => 'posts#update'
+  patch 'posts/:post_id/update' => 'posts#update'
   # 記事表示
   get 'posts/:post_id/detail' => 'posts#detail'
 
