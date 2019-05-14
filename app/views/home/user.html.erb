@@ -14,7 +14,7 @@
         <% @posts.each do |post| %>
           <li class="post-show">
             <div class="post-time"><p>投稿時間:<%= post.post_time %></p></div>
-            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}/detail") %></div>
+            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}") %></div>
             <pre><%= post.content %></pre>
           </li>
         <% end %>

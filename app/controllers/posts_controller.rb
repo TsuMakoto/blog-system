@@ -37,9 +37,9 @@ class PostsController < ApplicationController
     )
   end
 
-  # GET /posts/show
+  # GET /posts/index
   # 記事一覧を表示
-  def show
+  def index
     @posts = Post.all.order(created_at: :desc)
     @comment_count = Post.joins(:comments).group('comments.post_id').count
   end
@@ -84,7 +84,7 @@ class PostsController < ApplicationController
     )
   end
 
-  # POST /posts/:post_id/destroy
+  # DELETE /posts/:post_id/destroy
   # 記事の削除
   def destroy
     @post = Post.find(params[:post_id])
@@ -96,9 +96,9 @@ class PostsController < ApplicationController
     )
   end
 
-  # GET /post/:post_id/detail
+  # GET /post/:post_id
   # 記事の詳細を表示
-  def detail
+  def show
     @post = Post.find(params[:post_id])
     @comments = Comment.where(post_id: @post.id)
   end

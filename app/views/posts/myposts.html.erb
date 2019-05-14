@@ -22,9 +22,9 @@
       <ul>
         <% @posts.each do |post| %>
           <li class="post-show">
-            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}/detail") %></div>
+            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}") %></div>
             <%= link_to("編集", "/posts/#{post.id}/edit") %>
-            <%= link_to("削除", "/posts/#{post.id}/destroy", {method: "post"}) %>
+            <%= link_to("削除", "/posts/#{post.id}", {method: "delete"}) %>
           </li>
         <% end %>
       </ul>

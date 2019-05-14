@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'comment/new'
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
@@ -13,26 +12,14 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   
   # 記事投稿に関するrouting
-  resource :posts, except: [:index, :destroy]
-  # 記事削除
-  post 'posts/:post_id/destroy' => 'posts#destroy'
-  # 記事編集
-  get 'posts/:post_id/edit' => 'posts#edit'
+  resources :posts, param: :post_id
+
+  # コメント投稿に関するrouting
+  resources :comment, only: [:destroy, :update], param: :comment_id
+  post 'comment/:post_id/new' => 'comment#new'
+
   # 自分の記事一覧を表示
   get ':user_id/posts/show' => 'posts#myposts'
-  # 記事更新
-  patch 'posts/:post_id/update' => 'posts#update'
-  # 記事表示
-  get 'posts/:post_id/detail' => 'posts#detail'
-
-
-
-  # コメント新規投稿
-  post 'comment/:post_id/new' => 'comment#new'
-# コメント削除
-  post 'comment/:comment_id/destroy' => 'comment#destroy'
-  # コメント編集
-  post 'comment/:comment_id/update' => 'comment#update'
 
   # カテゴリー一覧表示
   # TODO: カテゴリー付けをする機能をつける

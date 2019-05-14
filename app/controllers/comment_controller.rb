@@ -12,27 +12,27 @@ class CommentController < ApplicationController
       content: params[:comment]
     )
     model_save_and_redirect(
-      "/posts/#{@post.id}/detail",
-      "posts/#{@post.id}/detail",
+      "/posts/#{@post.id}",
+      "posts/#{@post.id}",
       @comment,
       'コメントを投稿しました'
     )
   end
 
-  # POST /comment/:comment_id/destroy
+  # DELETE /comment/:comment_id
   # コメントの削除
   def destroy
     @comment = Comment.find(params[:comment_id])
     @post = Post.find(@comment.post_id)
     model_destroy_and_redirect(
-      "/posts/#{@post.id}/detail",
-      "/posts/#{@post.id}/detail",
+      "/posts/#{@post.id}",
+      "/posts/#{@post.id}",
       @comment,
       'コメントを削除しました'
     )
   end
 
-  # POST /comment/:comment_id/update
+  # PATCH /comment/:comment_id
   # コメントの更新
   def update
     @comment = Comment.find(params[:comment_id])
@@ -40,8 +40,8 @@ class CommentController < ApplicationController
     @post = Post.find(@comment.post_id)
 
     model_save_and_redirect(
-      "/posts/#{@post.id}/detail",
-      "posts/#{@post.id}/detail",
+      "/posts/#{@post.id}",
+      "posts/#{@post.id}",
       @comment,
       'コメントを更新しました'
     )
