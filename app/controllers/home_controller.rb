@@ -1,13 +1,10 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: [:top]
 
   # トップページを表示
   # ユーサー情報があればユーザのホームへ遷移する
   def top
-    if current_user.nil?
-      redirect_to('/users/sign_in')
-    else
-      redirect_to("/#{current_user.user_id}")
-    end
+    redirect_to("/#{current_user.user_id}")
   end
 
   # GET /:user_id

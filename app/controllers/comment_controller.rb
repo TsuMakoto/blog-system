@@ -1,24 +1,22 @@
 class CommentController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+
   # POST /comment/:post_id/new
   # コメントの新規投稿
   def new
     @post = Post.find(params[:post_id])
-    if current_user.nil?
-      redirect_to('/users/sign_in')
-    else
-      @comment = Comment.new(
-        user_id: current_user.id,
-        post_id: @post.id,
-        block_flg: 0,
-        content: params[:comment]
-      )
-      model_save_and_redirect(
-        "/posts/#{@post.id}/detail",
-        "posts/#{@post.id}/detail",
-        @comment,
-        'コメントを投稿しました'
-      )
-    end
+    @comment = Comment.new(
+      user_id: current_user.id,
+      post_id: @post.id,
+      block_flg: 0,
+      content: params[:comment]
+    )
+    model_save_and_redirect(
+      "/posts/#{@post.id}/detail",
+      "posts/#{@post.id}/detail",
+      @comment,
+      'コメントを投稿しました'
+    )
   end
 
   # POST /comment/:comment_id/destroy
