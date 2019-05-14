@@ -112,6 +112,7 @@
 
 #show-region .post-title {
   border-bottom: 1px solid #cccccc;
+  overflow: hidden;
 }
 
 #show-region .post-title a {
@@ -133,10 +134,16 @@
   font-weight: 700;
   margin-bottom: 16px;
   line-height: 1.4;
+  word-break: break-all;
 }
 
 #detail-posts-region .post-content {
   font-size: 1.2em;
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -pre-wrap;     /* Opera 4-6 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  white-space: pre-wrap;      /* CSS3 */
+  word-wrap: break-word;      /* IE 5.5+ */
 }
 
 .comment-region {
