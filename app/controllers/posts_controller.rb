@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :myposts]
+  before_action :authenticate_user!, only: [:new, :myposts, :create, :update, :destroy]
   # GET /posts/new
   # 記事の新規投稿画面
   def new
@@ -54,13 +54,14 @@ class PostsController < ApplicationController
     @categorys = Category.where(user_id: params[:id].to_i)
   end
 
+  # GET /posts/:post_id/edit
   def edit
     @user = User.find(current_user.id)
     @post = Post.find(params[:post_id])
     @categorys = Category.where(user_id: @user.id)
   end
 
-  # POST /posts/:post_id/update
+  # PATCH /posts/:post_id
   # 記事の更新
   def update
     # カテゴリー未選択の場合、カテゴリー"なし"を追加

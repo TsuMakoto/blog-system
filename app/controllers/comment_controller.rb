@@ -1,5 +1,5 @@
 class CommentController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :destroy, :update]
 
   # POST /comment/:post_id/new
   # コメントの新規投稿
