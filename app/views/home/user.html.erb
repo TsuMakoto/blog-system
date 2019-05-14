@@ -26,11 +26,11 @@
         <% @comments.each do |comment| %>
           <% post = Post.find(comment.post_id) %>
           <% comment_user = User.find(comment.user_id) %>
-          <li class="edit-comment-area">
+          <li class="comment-area">
             <div class="post-title">
               <p><b>記事タイトル : </b><%= post.title %></p>
             </div>
-            <%= comment.content %>
+            <div class="comment-content"><%= comment.content %></div>
             <p style="text-align: right">by <%= link_to("#{comment_user.user_id}", "/#{comment_user.user_id}") %></p>
           </li>
         <% end %>

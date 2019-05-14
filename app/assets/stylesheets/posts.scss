@@ -193,7 +193,9 @@
   margin-bottom: 40px;
 }
 
-.comment-show-region .edit-comment-area, .comment-show-region textarea  {
+.comment-show-region .edit-comment-area, 
+.comment-show-region textarea,
+.comment-show-region .comment-area {
   background-color: #fff;
   padding: 10px;
   margin: 10px;
@@ -201,13 +203,14 @@
   border: 2px solid #cccccc;
 }
 
-.comment-show-region .edit-comment-area {
+.comment-show-region .edit-comment-area,
+.comment-show-region .comment-content {
   white-space: -moz-pre-wrap; /* Mozilla */
   white-space: -pre-wrap;     /* Opera 4-6 */
   white-space: -o-pre-wrap;   /* Opera 7 */
   white-space: pre-wrap;      /* CSS3 */
   word-wrap: break-word;      /* IE 5.5+ */
-  }
+}
 
 .comment-show-region input[type="submit"] {
   background-color: inherit;
