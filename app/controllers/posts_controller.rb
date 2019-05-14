@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :myposts]
   # GET /posts/new
   # 記事の新規投稿画面
   def new
+    @post = Post.new
     @categorys = Category.where(user_id: current_user.id)
   end
 
@@ -25,9 +27,11 @@ class PostsController < ApplicationController
       category_id: params[:category_id],
       post_time: Time.zone.today
     )
+
+    @categorys = Category.where(user_id: current_user.id)
     model_save_and_redirect(
       "/#{current_user.user_id}/posts/show",
-      '/posts/new',
+      'posts/new',
       @post,
       '投稿に成功しました'
     )
