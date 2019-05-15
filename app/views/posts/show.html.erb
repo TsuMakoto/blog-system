@@ -4,7 +4,7 @@
     var comment_area = $('#edit-comment-area' + comment_id);
     comment_area.removeClass('hidden');
 
-    var comment_display = $('#comment-content-' + comment_id);
+    var comment_display = $('#comment-content' + comment_id);
     comment_display.addClass('hidden');
   }
 
@@ -13,7 +13,7 @@
     var comment_area = $('#edit-comment-area' + comment_id);
     comment_area.addClass('hidden');
 
-    var comment_display = $('#comment-content-' + comment_id);
+    var comment_display = $('#comment-content' + comment_id);
     comment_display.removeClass('hidden');
   }
 </script>
@@ -35,11 +35,10 @@
 <h3>コメント</h3>
 <div class="comment-show-region">
   <ul class="comment-show-list">
-    <% @comments.each do |comment| %>
-      <% comment_user = User.find(comment.user_id) %>
+    <% @post.comments.each do |comment| %>
       <li>
-        <p><%= link_to(comment_user.user_id, user_path(comment_user.user_id)) %></p>
-        <div id="<%= "comment-content-#{comment.id}" %>">
+        <p><%= link_to(comment.user.user_id, user_path(comment.user.user_id)) %></p>
+        <div id="<%= get_id_comment_content(comment.id) %>">
           <pre class="edit-comment-area"><%= comment.content %></pre>
           <div class="comment-edit-form">
             <% if user_signed_in? %>
@@ -53,7 +52,7 @@
           </div>
         </div>
         <% if user_signed_in? && current_user.id == comment.user_id %>
-          <div id="<%= "edit-comment-area#{comment.id}" %>" class="update-comment-area hidden">
+          <div id="<%= get_id_edit_comment(comment.id)  %>" class="update-comment-area hidden">
             <%= form_with(model: comment, url: post_comment_path(@post.id, comment.id), method: :patch) do |f| %>
               <%= f.text_area :content, size: "30x10" %>
               <div class="comment-update-form">

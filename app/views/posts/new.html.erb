@@ -11,7 +11,7 @@
       <%= f.select :mst_status_id, MstStatus.all.map{|s| [s.status_name, s.id]}, {}, { class: "post-status" } %>
       <div class="category-frame">
         <ul>
-          <% @categorys.each do |category| %>
+          <% current_user.categorys.each do |category| %>
             <li>
               <%= f.check_box :category_id, value: category.id %>
               <%= category.name %>

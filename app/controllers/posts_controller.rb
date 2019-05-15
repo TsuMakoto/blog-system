@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   # 記事の新規投稿画面
   def new
     @post = Post.new
-    @categorys = Category.where(user_id: current_user.id)
   end
 
   # POST /posts/create
@@ -15,8 +14,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.post_time = Time.zone.today # TODO: 不要なので削除予定
 
-    # 登録失敗用
-    @categorys = Category.where(user_id: current_user.id)
     model_save_and_redirect(
       user_posts_path(current_user.user_id),
       new_post_path,
@@ -29,14 +26,11 @@ class PostsController < ApplicationController
   # 記事一覧を表示
   def index
     @posts = Post.all.order(created_at: :desc)
-    @comment_count = Post.joins(:comments).group('comments.post_id').count
   end
 
-  # GET /posts/:post_id/edit
+  # GET /posts/:id/edit
   def edit
-    @user = User.find(current_user.id)
-    @post = Post.find_by(user_id: @user.id)
-    @categorys = Category.where(user_id: @user.id)
+    @post = Post.find(params[:id])
   end
 
   # PATCH /posts/:post_id
@@ -88,6 +82,7 @@ class PostsController < ApplicationController
   # カテゴリー未選択の場合、カテゴリー"none"を追加
   # TODO: カテゴリ選択ができるように実装
   # 今は全てnoneで登録
+  # rubocop:disable Metrics/AbcSize
   def set_category_id
     category_id = params.require(:post).permit(:category_id)[:category_id]
     params[:post][:category_id] if category_id == '0'
@@ -99,6 +94,7 @@ class PostsController < ApplicationController
     params[:post][:category_id] = @none_category.id
   end
 
+  # rubocop:enable Metrics/AbcSize
   def post_params
     params
       .require(:post)

@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   # コメントの削除
   def destroy
     @comment = Comment.find(params[:id])
-    @post = Post.find(@comment.post_id)
+    @post = @comment.post
     model_destroy_and_redirect(
       post_path(@post.id),
       post_path(@post.id),
@@ -31,9 +31,8 @@ class CommentsController < ApplicationController
   # PATCH /comment/:comment_id
   # コメントの更新
   def update
-    @comment = comment.find(params[:id])
-    # 更新失敗時パラメータ
-    @post = post.find(@comment.post_id)
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
 
     model_update_and_redirect(
       post_path(@post.id),

@@ -1,4 +1,4 @@
-<%= form_with(model: @post, url: post_path, method: 'patch') do |f| %>
+<%= form_with(model: @post, url: post_path, method: :patch) do |f| %>
   <div id="edit-title">
     <%= f.text_field :title, value: @post.title, class: "title-form", placeholder: "タイトル" %>
   </div>
@@ -11,7 +11,7 @@
       <%= f.select :mst_status_id, MstStatus.all.map{|s| [s.status_name, s.id]}, {}, { class: "post-status" } %>
       <div class="category-frame">
         <ul>
-          <% @categorys.each do |category| %>
+          <% current_user.categorys.each do |category| %>
             <li>
               <%= f.check_box :category_id, {checked: category.id == @post.category_id}, category.id %>
               <%= category.name %>
