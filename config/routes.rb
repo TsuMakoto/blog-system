@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # ユーザ
   resources :users, only: [:show] do
     # ユーザに紐づく記事一覧
-    resources :posts, only: [:index], module: 'users'
+    resources :posts, only: [:index], module: :users
   end
 
   get '/' => 'home#top', as: :top
