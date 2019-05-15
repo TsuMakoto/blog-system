@@ -69,7 +69,6 @@ class PostsController < ApplicationController
   # 記事の詳細を表示
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.where(post_id: @post.id)
     @comment = Comment.new
   end
 
@@ -91,11 +90,13 @@ class PostsController < ApplicationController
   # 今は全てnoneで登録
   def set_category_id
     category_id = params.require(:post).permit(:category_id)[:category_id]
-    if category_id == '0'
-      @none_category = Category.find_by(name: 'none', user_id: current_user.id)
-      @none_category = save_none_category(current_user.id) if @none_category.nil?
-      params[:post][:category_id] = @none_category.id
-    end
+    params[:post][:category_id] if category_id == '0'
+
+    @none_category = Category.find_by(name: 'none', user_id: current_user.id)
+
+    @none_category = save_none_category(current_user.id) if @none_category.nil?
+
+    params[:post][:category_id] = @none_category.id
   end
 
   def post_params
