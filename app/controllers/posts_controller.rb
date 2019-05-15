@@ -11,24 +11,11 @@ class PostsController < ApplicationController
   # POST /posts/create
   # 新規記事投稿
   def create
-    # カテゴリー未選択の場合、カテゴリー"none"を追加
-    # TODO: カテゴリ選択ができるように実装
-    # 今は全てnoneで登録
-    if params[:category_id] == '0'
-      @none_category = Category.find_by(name: 'none', user_id: current_user.id)
-      @none_category = save_none_category(current_user.id) if @none_category.nil?
-      params[:category_id] = @none_category.id
-    end
+    set_category_id
+    @post = Post.new(post_params)
+    @post.post_time = Time.zone.today # TODO: 不要なので削除予定
 
-    @post = Post.new(
-      user_id: current_user.id,
-      content: params[:content],
-      title: params[:title],
-      mst_status_id: params[:mst_status_id].to_i,
-      category_id: params[:category_id],
-      post_time: Time.zone.today
-    )
-
+    # 登録失敗用
     @categorys = Category.where(user_id: current_user.id)
     model_save_and_redirect(
       user_posts_path(current_user.user_id),
@@ -55,24 +42,13 @@ class PostsController < ApplicationController
   # PATCH /posts/:post_id
   # 記事の更新
   def update
-    # カテゴリー未選択の場合、カテゴリー"なし"を追加
-    if params[:post][:category_id] == '0'
-      @none_category = Category.find_by(name: 'none', user_id: current_user.id)
-      @none_category = save_none_category(current_user.id) if @none_category.nil?
-      params[:post][:category_id] = @none_category.id
-    end
-
+    set_category_id
     @post = Post.find(params[:id])
-    @post.content = params[:post][:content]
-    @post.title = params[:post][:title]
-    @post.mst_status_id = params[:post][:mst_status_id]
-    @post.category_id = params[:post][:category_id]
-
-
-    model_save_and_redirect(
+    model_update_and_redirect(
       user_posts_path(current_user.user_id),
       edit_post_path(@post.id),
       @post,
+      post_params,
       '記事を更新しました'
     )
   end
@@ -94,6 +70,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = Comment.where(post_id: @post.id)
+    @comment = Comment.new
   end
 
   private
@@ -106,6 +83,25 @@ class PostsController < ApplicationController
       parent_category_id: 0,
       user_id: user_id
     )
-    return @none_category if @none_category.save
+    @none_category if @none_category.save
+  end
+
+  # カテゴリー未選択の場合、カテゴリー"none"を追加
+  # TODO: カテゴリ選択ができるように実装
+  # 今は全てnoneで登録
+  def set_category_id
+    category_id = params.require(:post).permit(:category_id)[:category_id]
+    if category_id == '0'
+      @none_category = Category.find_by(name: 'none', user_id: current_user.id)
+      @none_category = save_none_category(current_user.id) if @none_category.nil?
+      params[:post][:category_id] = @none_category.id
+    end
+  end
+
+  def post_params
+    params
+      .require(:post)
+      .permit(:title, :content, :mst_status_id, :category_id)
+      .merge(user_id: current_user.id)
   end
 end

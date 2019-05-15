@@ -68,7 +68,7 @@
   </ul>
 </div> 
 <!-- ここにコメント記入欄を表示 -->
-<%= form_with(model: @comment, url: post_comments_path(@post.id), local: true) do |f| %>
+<%= form_with(model: @comment, url: post_comments_path(@post.id)) do |f| %>
   <div id="comment-region" class="comment-region">
     <%= f.text_area :content, id: "new-comment-area",  size: "30x10", placeholder: "コメントを記入してください" %>
     <%= f.submit "投稿" %>

@@ -5,12 +5,8 @@ class CommentsController < ApplicationController
   # コメントの新規投稿
   def create
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(
-      user_id: current_user.id,
-      post_id: @post.id,
-      block_flg: 0,
-      content: params[:comment]
-    )
+    @comment = @post.comments.build(comment_params)
+
     model_save_and_redirect(
       post_path(@post.id),
       post_path(@post.id),
@@ -35,15 +31,26 @@ class CommentsController < ApplicationController
   # PATCH /comment/:comment_id
   # コメントの更新
   def update
-    @comment = Comment.find(params[:id])
-    @comment.content = params[:update_comment]
-    @post = Post.find(@comment.post_id)
+    @comment = comment.find(params[:id])
+    # 更新失敗時パラメータ
+    @post = post.find(@comment.post_id)
 
-    model_save_and_redirect(
+    model_update_and_redirect(
       post_path(@post.id),
       post_path(@post.id),
       @comment,
+      comment_params,
       'コメントを更新しました'
     )
+  end
+
+  private
+
+  def comment_params
+    params
+      .require(:comment)
+      .permit(:content)
+      .merge(user_id: current_user.id)
+      .merge(block_flg: 0)
   end
 end
