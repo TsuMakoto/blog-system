@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   # GET /posts/new
   # 記事の新規投稿画面
@@ -100,5 +101,11 @@ class PostsController < ApplicationController
       .require(:post)
       .permit(:title, :content, :mst_status_id, :category_id)
       .merge(user_id: current_user.id)
+  end
+
+  # 編集権限がない場合、記事一覧ページへ飛ばす
+  def ensure_correct_user
+    @post = Post.find(params[:id])
+    redirect_to(posts_path, notice: '権限がありません') unless current_user.id == @post.user_id
   end
 end

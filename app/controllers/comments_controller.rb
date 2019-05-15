@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user
 
   # POST /posts/:post_id/comments
   # コメントの新規投稿
@@ -52,4 +53,15 @@ class CommentsController < ApplicationController
       .merge(user_id: current_user.id)
       .merge(block_flg: 0)
   end
+
+  # 編集権限がないユーザを該当記事ページへ飛ばす
+  # rubocop:disable Style/MultilineIfModifier
+  def ensure_correct_user
+    @comment = params[:id]
+    redirect_to(
+      post_path(param[:post_id]),
+      notice: '権限がありません'
+    ) unless current_user.id == @comment.user_id
+  end
+  # rubocop:enable Style/MultilineIfModifier
 end
