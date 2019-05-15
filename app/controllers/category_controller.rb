@@ -1,7 +1,7 @@
 class CategoryController < ApplicationController
   # GET /category/all
   # カテゴリの一覧を表示
-  def all
+  def index
     @parent_categorys = Category.where(user_id: current_user.id, parent_category_id: 0)
     @categorys = classify_category(@parent_categorys)
   end

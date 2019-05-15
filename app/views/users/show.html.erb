@@ -2,7 +2,7 @@
   <% if current_user.id == @user.id %>
     <h3>最近の投稿</h3>
     <div>最近の投稿はありません</div>
-    <div><%= link_to("初めての投稿をしましょう!", "/posts/new") %></div>
+    <div><%= link_to("初めての投稿をしましょう!", new_post_path) %></div>
   <% else %>
     <div>投稿はありません</div>
   <% end %>
@@ -14,7 +14,7 @@
         <% @posts.each do |post| %>
           <li class="post-show">
             <div class="post-time"><p>投稿時間:<%= post.post_time %></p></div>
-            <div class="post-title"><%= link_to(post.title, "/posts/#{post.id}") %></div>
+            <div class="post-title"><%= link_to(post.title, post_path(post.id)) %></div>
             <pre><%= post.content %></pre>
           </li>
         <% end %>
@@ -28,10 +28,10 @@
           <% comment_user = User.find(comment.user_id) %>
           <li class="comment-area">
             <div class="post-title">
-              <p><b>記事タイトル : </b><%= post.title %></p>
+              <p><b>記事タイトル : </b><%= link_to(post.title, post_path(post.id)) %></p>
             </div>
             <div class="comment-content"><%= comment.content %></div>
-            <p style="text-align: right">by <%= link_to("#{comment_user.user_id}", "/#{comment_user.user_id}") %></p>
+            <p style="text-align: right">by <%= link_to(comment_user.user_id, user_path(comment_user.user_id)) %></p>
           </li>
         <% end %>
       </ul>

@@ -84,7 +84,8 @@
   height: auto;
 }
 
-#show-region a {
+#show-region a,
+.comment-area .post-title a {
   text-decoration: none;
   color: #2d3133;
   font-size: 14px;
@@ -118,6 +119,7 @@
 #show-region .post-title a {
   font-size: 1.2em;
 }
+
 /* ************** 記事投稿一覧スタイル定義 ************** */
 
 

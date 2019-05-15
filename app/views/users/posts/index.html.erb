@@ -2,18 +2,15 @@
 <div id="show-region" class="show-region">
   <% if @posts.empty? %>
     <div>まだ投稿はありません</div>
-    <div>初めての投稿者になりましょう！</div>
     <div><%= link_to("記事を投稿する", new_post_path) %></div>
-  <% else %> 
+  <% else %>
     <div class="show">
       <ul>
         <% @posts.each do |post| %>
-          <% user = User.find(post.user_id) %>
           <li class="post-show">
             <div class="post-title"><%= link_to(post.title, post_path(post.id)) %></div>
-            <pre><%= post.content %></pre>
-            <p class="user_info">by <%= link_to(user.user_id, user_path(user.user_id)) %></p>
-            <p>コメント件数：<%= @comment_count[post.id].nil? ? 0 : @comment_count[post.id] %></p>
+            <%= link_to("編集", edit_post_path(post.id)) %>
+            <%= link_to("削除", post_path(post.id), {method: "delete"}) %>
           </li>
         <% end %>
       </ul>

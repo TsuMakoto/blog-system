@@ -38,7 +38,7 @@
     <% @comments.each do |comment| %>
       <% comment_user = User.find(comment.user_id) %>
       <li>
-        <p><%= link_to(comment_user.user_id, "/#{comment_user.user_id}") %></p>
+        <p><%= link_to(comment_user.user_id, user_path(comment_user.user_id)) %></p>
         <div id="<%= "comment-content-#{comment.id}" %>">
           <pre class="edit-comment-area"><%= comment.content %></pre>
           <div class="comment-edit-form">
@@ -47,14 +47,14 @@
                 <div class="edit-comment" onclick="editComment(<%= "#{comment.id}" %>)">編集</div>
               <% end %>
               <% if (current_user.id == @post.user_id || current_user.id == comment.user_id)%>
-                <%= link_to("削除", "/comment/#{comment.id}", {method: "delete"}) %>
+                <%= link_to("削除", post_comment_path(@post.id, comment.id), {method: :delete}) %>
               <% end %>
             <% end %>
           </div>
         </div>
         <% if user_signed_in? && current_user.id == comment.user_id %>
           <div id="<%= "edit-comment-area#{comment.id}" %>" class="update-comment-area hidden">
-            <%= form_with(url: "/comment/#{comment.id}", method: :patch) do |f| %>
+            <%= form_with(url: post_comment_path(@post.id, comment.id), method: :patch) do |f| %>
               <%= f.text_area :update_comment, value: comment.content, size: "30x10" %>
               <div class="comment-update-form">
                 <%= f.submit "更新" %>
@@ -68,7 +68,7 @@
   </ul>
 </div> 
 <!-- ここにコメント記入欄を表示 -->
-<%= form_with(url: "/comment/#{@post.id}/new") do |f| %>
+<%= form_with(url: post_comments_path(@post.id)) do |f| %>
   <div id="comment-region" class="comment-region">
     <%= f.text_area :comment, id: "new-comment-area",  size: "30x10", placeholder: "コメントを記入してください" %>
     <%= f.submit "投稿" %>

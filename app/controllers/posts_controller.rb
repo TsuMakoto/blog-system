@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :myposts, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   # GET /posts/new
   # 記事の新規投稿画面
   def new
@@ -30,8 +31,8 @@ class PostsController < ApplicationController
 
     @categorys = Category.where(user_id: current_user.id)
     model_save_and_redirect(
-      "/#{current_user.user_id}/posts/show",
-      'posts/new',
+      user_posts_path(current_user.user_id),
+      new_post_path,
       @post,
       '投稿に成功しました'
     )
@@ -44,20 +45,10 @@ class PostsController < ApplicationController
     @comment_count = Post.joins(:comments).group('comments.post_id').count
   end
 
-  # GET /posts/:user_id/show
-  # 自分の記事を表示
-  def myposts
-    redirect_to("/#{current_user.user_id}/posts/show") if current_user.user_id != params[:user_id]
-
-    @user = User.find_by(user_id: current_user.user_id)
-    @posts = Post.where(user_id: @user.id)
-    @categorys = Category.where(user_id: params[:id].to_i)
-  end
-
   # GET /posts/:post_id/edit
   def edit
     @user = User.find(current_user.id)
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(user_id: @user.id)
     @categorys = Category.where(user_id: @user.id)
   end
 
@@ -65,21 +56,22 @@ class PostsController < ApplicationController
   # 記事の更新
   def update
     # カテゴリー未選択の場合、カテゴリー"なし"を追加
-    if params[:post][:category] == '0'
+    if params[:post][:category_id] == '0'
       @none_category = Category.find_by(name: 'none', user_id: current_user.id)
       @none_category = save_none_category(current_user.id) if @none_category.nil?
-      params[:post][:category] = @none_category.id
+      params[:post][:category_id] = @none_category.id
     end
 
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
     @post.content = params[:post][:content]
     @post.title = params[:post][:title]
     @post.mst_status_id = params[:post][:mst_status_id]
     @post.category_id = params[:post][:category_id]
 
+
     model_save_and_redirect(
-      "/#{@post.user_id}/posts/show",
-      "/posts/#{@post.id}/edit",
+      user_posts_path(current_user.user_id),
+      edit_post_path(@post.id),
       @post,
       '記事を更新しました'
     )
@@ -88,10 +80,10 @@ class PostsController < ApplicationController
   # DELETE /posts/:post_id/destroy
   # 記事の削除
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
     model_destroy_and_redirect(
-      "/#{@post.user_id}/posts/show",
-      "/#{@post.user_id}/post/sshow",
+      user_posts_path(@post.user_id),
+      user_posts_path(@post.user_id),
       @post,
       "記事「#{@post.title}」を削除しました"
     )
@@ -100,7 +92,7 @@ class PostsController < ApplicationController
   # GET /post/:post_id
   # 記事の詳細を表示
   def show
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
     @comments = Comment.where(post_id: @post.id)
   end
 
