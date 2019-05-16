@@ -11,7 +11,7 @@
     <div id="show-region">
       <h3>最近の投稿</h3>
       <ul>
-        <% limited_model(@user.posts).each do |post| %>
+        <% @limited_model_posts.each do |post| %>
           <li class="post-show">
             <div class="post-time"><p>投稿時間:<%= post.post_time %></p></div>
             <div class="post-title"><%= link_to(post.title, post_path(post.id)) %></div>
@@ -23,7 +23,7 @@
     <h3>最近のコメント</h3>
     <div class="comment-show-region">
       <ul class="comment-show-list">
-        <% limited_model(@user.comments).each do |comment| %>
+        <% @limited_model_comments.each do |comment| %>
           <li class="comment-area">
             <div class="post-title">
               <p>
