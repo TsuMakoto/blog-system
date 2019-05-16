@@ -1,6 +1,6 @@
 <%= form_with(model: @post, url: post_path, method: :patch) do |f| %>
   <div id="edit-title">
-    <%= f.text_field :title, value: @post.title, class: "title-form", placeholder: "タイトル" %>
+    <%= f.text_field :title,  class: "title-form", placeholder: "タイトル" %>
   </div>
 
   <!-- ここでタグやカテゴリの設定 -->
@@ -25,7 +25,7 @@
   <!-- ここに記事を書く -->
   <div id="edit-region" class="edit-region">
     <div class="edit">
-      <%= f.text_area :content, size: "30x40", placeholder: "記事を書く", class: "edit-textarea", value: @post.content %>
+      <%= f.text_area :content, size: "30x40", placeholder: "記事を書く", class: "edit-textarea" %>
     </div>
   </div>
 <% end %>

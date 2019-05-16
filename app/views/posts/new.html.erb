@@ -13,7 +13,7 @@
         <ul>
           <% current_user.categorys.each do |category| %>
             <li>
-              <%= f.check_box :category_id, value: category.id %>
+              <%= f.check_box :category_id %>
               <%= category.name %>
             </li>
           <% end %>
