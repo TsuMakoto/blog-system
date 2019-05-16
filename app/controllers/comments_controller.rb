@@ -51,7 +51,6 @@ class CommentsController < ApplicationController
     params
       .require(:comment)
       .permit(:content)
-      .merge(block_flg: 0)
   end
 
   # 編集権限がないユーザを該当記事ページへ飛ばす
