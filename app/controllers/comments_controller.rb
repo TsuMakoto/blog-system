@@ -1,16 +1,13 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user
+  before_action :ensure_correct_user, only: [:update, :destroy]
 
   # POST /posts/:post_id/comments
   # コメントの新規投稿
   def create
-    @comment =
-      current_user
-      .posts
-      .build(post_id: params[:post_id])
-      .comments
-      .build(comment_params)
+    @post = Post.find(params[:post_id])
+    @comment = current_user.comments.build(comment_params)
+    @comment.post = @post
 
     model_save_and_redirect(
       post_path(@post.id),
