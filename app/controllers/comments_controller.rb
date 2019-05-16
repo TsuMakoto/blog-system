@@ -5,8 +5,12 @@ class CommentsController < ApplicationController
   # POST /posts/:post_id/comments
   # コメントの新規投稿
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
+    @comment =
+      current_user
+      .posts
+      .build(post_id: params[:post_id])
+      .comments
+      .build(comment_params)
 
     model_save_and_redirect(
       post_path(@post.id),
@@ -50,7 +54,6 @@ class CommentsController < ApplicationController
     params
       .require(:comment)
       .permit(:content)
-      .merge(user_id: current_user.id)
       .merge(block_flg: 0)
   end
 

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   # 新規記事投稿
   def create
     set_category_id
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     @post.post_time = Time.zone.today # TODO: 不要なので削除予定
 
     model_save_and_redirect(
@@ -83,10 +83,9 @@ class PostsController < ApplicationController
   # カテゴリー未選択の場合、カテゴリー"none"を追加
   # TODO: カテゴリ選択ができるように実装
   # 今は全てnoneで登録
-  # rubocop:disable Metrics/AbcSize
   def set_category_id
-    category_id = params.require(:post).permit(:category_id)[:category_id]
-    params[:post][:category_id] if category_id == '0'
+    category_id = params[:post][:category_id]
+    category_id if category_id == '0'
 
     @none_category = Category.find_by(name: 'none', user_id: current_user.id)
 
@@ -95,12 +94,10 @@ class PostsController < ApplicationController
     params[:post][:category_id] = @none_category.id
   end
 
-  # rubocop:enable Metrics/AbcSize
   def post_params
     params
       .require(:post)
       .permit(:title, :content, :mst_status_id, :category_id)
-      .merge(user_id: current_user.id)
   end
 
   # 編集権限がない場合、記事一覧ページへ飛ばす
