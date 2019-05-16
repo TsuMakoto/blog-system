@@ -1,5 +1,5 @@
 <div id="category-region" class="show-region">
-  <!-- カテゴリー追加領域 -->
+  <%# カテゴリー追加領域 %>
   <%= form_tag("/category/new") do %>
     <div id="append-new-cate">
       <input type="text" name="new_categrory" placeholder="カテゴリー名">
@@ -13,7 +13,7 @@
       <input type="submit" value="登録">
     </div>
   <% end %>
-  <!-- 現在のカテゴリー -->
+  <%# 現在のカテゴリー %>
   <ul class="categorys">
     <% @categorys.each do |category| %>
       <% if category[:level] == 1 %>

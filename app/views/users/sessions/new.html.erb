@@ -5,12 +5,12 @@
   <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), class: "login-container") do |f| %>
 
     <div class="field">
-      <!-- <%= f.label :user_id %><br /> -->
+      <%# <%= f.label :user_id %><br /> %>
       <%= f.text_field :user_id, autofocus: true, autocomplete: "user_id", placeholder: "USER ID"%>
     </div>
 
     <div class="field">
-      <!-- <%= f.label :password %><br /> -->
+      <%# <%= f.label :password %><br /> %>
       <%= f.password_field :password, autocomplete: "current-password", placeholder: "PASSWORD" %>
     </div>
 

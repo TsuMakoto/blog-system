@@ -23,7 +23,7 @@
     <h1 class="title"><%= @post.title %></h1>
   </div>
 
-  <!-- ここに記事を表示 -->
+  <%# ここに記事を表示 %>
   <div id="post-region" class="post-region">
     <div class="post-detail">
       <pre class="post-content"><%= @post.content %></pre>
@@ -31,7 +31,7 @@
   </div>
 </article>
 
-<!-- ここにコメントを表示 -->
+<%# ここにコメントを表示 %>
 <h3>コメント</h3>
 <div class="comment-show-region">
   <ul class="comment-show-list">
@@ -66,7 +66,7 @@
     <% end %>
   </ul>
 </div> 
-<!-- ここにコメント記入欄を表示 -->
+<%# ここにコメント記入欄を表示 %>
 <%= form_with(model: @comment, url: post_comments_path(@post.id), local: true) do |f| %>
   <div id="comment-region" class="comment-region">
     <%= f.text_area :content, id: "new-comment-area",  size: "30x10", placeholder: "コメントを記入してください" %>

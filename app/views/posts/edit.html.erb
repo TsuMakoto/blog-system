@@ -3,7 +3,7 @@
     <%= f.text_field :title,  class: "title-form", placeholder: "タイトル" %>
   </div>
 
-  <!-- ここでタグやカテゴリの設定 -->
+  <%# ここでタグやカテゴリの設定 %>
   <div id="post-component">
     <div class="side-component">
       <%= f.submit "投稿", class: "update-post" %>
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <!-- ここに記事を書く -->
+  <%# ここに記事を書く %>
   <div id="edit-region" class="edit-region">
     <div class="edit">
       <%= f.text_area :content, size: "30x40", placeholder: "記事を書く", class: "edit-textarea" %>
