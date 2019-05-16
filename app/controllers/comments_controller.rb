@@ -54,13 +54,23 @@ class CommentsController < ApplicationController
   end
 
   # 編集権限がないユーザを該当記事ページへ飛ばす
-  # rubocop:disable Style/MultilineIfModifier
+  # rubocop:disable Metrics/AbcSize
   def ensure_correct_user
-    @comment = params[:id]
-    redirect_to(
-      post_path(param[:post_id]),
-      notice: '権限がありません'
-    ) unless current_user.id == @comment.user_id
+    comment = Comment.find(params[:id])
+
+    if params[:action] == 'destroy'
+      if comment.user.id != current_user.id && comment.post.user.id != current_user.id
+        redirect_to(
+          post_path(comment.post.id),
+          notice: '権限がありません'
+        )
+      end
+    elsif comment.user.id != current_user.id
+      redirect_to(
+        post_path(comment.post.id),
+        notice: '権限がありません'
+      )
+    end
   end
-  # rubocop:enable Style/MultilineIfModifier
+  # rubocop:enable  Metrics/AbcSize
 end
