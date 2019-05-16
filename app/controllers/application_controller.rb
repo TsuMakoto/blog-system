@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  private
+
   # モデルのセーブを実行し,指定のURLへリダイレクト
   # ==== Args
   # redirect_url :: リダイレクト先URL
