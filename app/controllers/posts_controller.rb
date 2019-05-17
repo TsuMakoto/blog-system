@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   def create
     set_category_id
     @post = current_user.posts.build(post_params)
-    @post.post_time = Time.zone.today # TODO: 不要なので削除予定
+    @post.post_time = Time.zone.today # TODO: 不要なので削除予定（post_paramsで設定する）
 
     model_save_and_redirect(
       user_posts_path(current_user.user_id),
