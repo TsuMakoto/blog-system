@@ -1,0 +1,7 @@
+ja:
+  users:
+    show:
+      users_post: 最近の投稿
+      emp_users_post_message1: 最近の投稿はありません
+      emp_users_post_message2: 初めての投稿をしましょう!
+      users_comment: 最近のコメント

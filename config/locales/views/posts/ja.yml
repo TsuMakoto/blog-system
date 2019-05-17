@@ -1,0 +1,18 @@
+ja:
+  posts:
+    shared:
+      edit:
+        edit_placeholder: 記事を書く
+    index:
+      emp_post_message1: まだ投稿はありません
+      emp_post_message2: 初めての投稿者になりましょう！
+      emp_post_message3: 記事を投稿する
+      comment_count: コメント件数：%{comment_count}
+    show:
+      edit: 編集
+      delete: 削除
+      update: 更新
+      cancel: キャンセル
+      comment_placeholder: コメントを記入してください
+    new:
+      edit_placeholder: 記事を書く

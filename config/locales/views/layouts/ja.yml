@@ -1,0 +1,11 @@
+ja:
+  application:
+    user_home: 'ホームへ'
+    posts: '投稿一覧'
+    logout: 'ログアウト'
+    login: 'ログイン'
+    user_posts: '自分の記事'
+    new_posts: '新規作成'
+    category: 'カテゴリー'
+    tag: 'タグ'
+    like: 'お気に入り一覧'

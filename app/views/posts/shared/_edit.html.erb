@@ -1,12 +1,12 @@
 <div id="edit-title">
-  <%= f.text_field :title,  class: "title-form", placeholder: "タイトル" %>
+  <%= f.text_field :title,  class: "title-form", placeholder: Post.human_attribute_name(:title) %>
 </div>
 
 <%# ここでタグやカテゴリの設定 %>
 <div id="post-component">
   <div class="side-component">
-    <%= f.submit "投稿", class: "update-post" %>
-    <div>公開状態</div>
+    <%= f.submit Post.model_name.human, class: "update-post" %>
+    <div><%= Post.human_attribute_name :mst_status_id %></div>
     <%= f.select :mst_status_id, MstStatus.all.map{|s| [s.status_name, s.id]}, {}, { class: "post-status" } %>
     <div class="category-frame">
       <ul>
@@ -24,6 +24,6 @@
 <%# ここに記事を書く %>
 <div id="edit-region" class="edit-region">
   <div class="edit">
-    <%= f.text_area :content, size: "30x40", placeholder: "記事を書く", class: "edit-textarea" %>
+    <%= f.text_area :content, size: "30x40", placeholder: t('.edit_placeholder'), class: "edit-textarea" %>
   </div>
 </div>

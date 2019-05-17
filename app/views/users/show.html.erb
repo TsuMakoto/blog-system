@@ -1,40 +1,40 @@
 <% if @user.posts.count == 0 %>
   <% if current_user.id == @user.id %>
-    <h3>最近の投稿</h3>
-    <div>最近の投稿はありません</div>
-    <div><%= link_to("初めての投稿をしましょう!", new_post_path) %></div>
+    <h3><%= t '.users_post' %></h3>
+    <div><%= t '.emp_users_post_message1' %></div>
+    <div><%= link_to t('.emp_users_post_message1'), new_post_path %></div>
   <% else %>
-    <div>投稿はありません</div>
+    <div><%= t '.emp_post_message1' %></div>
   <% end %>
 <% else %>
   <div id="myhome">
     <div id="show-region">
-      <h3>最近の投稿</h3>
+      <h3><%= t '.users_post' %></h3>
       <ul>
         <% @limited_model_posts.each do |post| %>
           <li class="post-show">
-            <div class="post-time"><p>投稿時間:<%= post.post_time %></p></div>
-            <div class="post-title"><%= link_to(post.title, post_path(post.id)) %></div>
+            <div class="post-time"><p><%= Post.human_attribute_name :post_time, post_time: post.post_time %></p></div>
+            <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
             <pre><%= post.content %></pre>
           </li>
         <% end %>
       </ul>
     </div>
-    <h3>最近のコメント</h3>
+    <h3><%= t '.users_comment' %></h3>
     <div class="comment-show-region">
       <ul class="comment-show-list">
         <% @limited_model_comments.each do |comment| %>
           <li class="comment-area">
             <div class="post-title">
               <p>
-                <b>記事タイトル : </b>
-                <%= link_to(comment.post.title, post_path(comment.post.id)) %>
+                <b><%= Comment.human_attribute_name :post_id %></b>
+                <%= link_to comment.post.title, post_path(comment.post.id) %>
               </p>
             </div>
             <div class="comment-content"><%= comment.content %></div>
             <p style="text-align: right">
               by 
-              <%= link_to(comment.user.user_id, user_path(comment.user.user_id)) %>
+              <%= link_to comment.user.user_id, user_path(comment.user.user_id) %>
             </p>
           </li>
         <% end %>

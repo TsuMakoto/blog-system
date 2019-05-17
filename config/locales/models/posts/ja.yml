@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        id: 記事番号
+        user_id: 投稿者
+        content: コンテンツ
+        title: タイトル
+        mst_status_id: 公開状態
+        category_id: カテゴリー
+        post_time: 投稿時間：%{post_time}
+        thumnail_url: サムネイル
+        created_at: 作成日
+        updated_at: 最終更新日

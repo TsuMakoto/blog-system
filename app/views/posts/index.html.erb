@@ -1,21 +1,21 @@
 <%# ここに記事を表示 %>
 <div id="show-region" class="show-region">
   <% if @posts.empty? %>
-    <div>まだ投稿はありません</div>
-    <div>初めての投稿者になりましょう！</div>
-    <div><%= link_to("記事を投稿する", new_post_path) %></div>
+    <div><%= t '.emp_post_message1' %></div>
+    <div><%= t '.emp_post_message2' %></div>
+    <div><%= link_to t('.emp_post_message3'), new_post_path %></div>
   <% else %> 
     <div class="show">
       <ul>
         <% @posts.each do |post| %>
           <li class="post-show">
-            <div class="post-title"><%= link_to(post.title, post_path(post.id)) %></div>
+            <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
             <pre><%= post.content %></pre>
             <p class="user_info">
               by 
-              <%= link_to(post.user.user_id, user_path(post.user.user_id)) %>
+              <%= link_to post.user.user_id, user_path(post.user.user_id) %>
             </p>
-            <p>コメント件数：<%= post.comments.count %></p>
+            <p><%= t '.comment_count', comment_count: post.comments.count %></p>
           </li>
         <% end %>
       </ul>
