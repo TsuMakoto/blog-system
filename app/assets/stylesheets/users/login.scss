@@ -1,86 +1,79 @@
 /* Form Layout */
+
 .login {
   background: #fafafa;
   margin: 100px 20%;
   padding: 0 1em;
   max-width: 370px;
+  h1 {
+    text-align: center;
+    padding: 1em 0;
+  }
+  form {
+    padding: 0 1.5em;
+  }
 }
 
-.login h1 {
-  text-align: center;
-  padding: 1em 0;
-}
-
-.login form {
-  padding: 0 1.5em;
-}
-
-.login-container .field {
-  margin-bottom: 0.75em;
-  width: 100%;
-}
-
-.login-container .field input {
-  background: #fafafa;
-  border: none;
-  border-bottom: 2px solid #e9e9e9;
-  color: #666;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
-  height: 50px;
-  transition: border-color 0.3s;
-  width: 100%;
-}
-
-.login-container .field input[type="checkbox"] {
-  width: auto;
-  display: inline;
-  height: auto;
-  margin-right: 10px;
-  margin-top: 20px;
-}
-
-.login-container .field input:focus {
-  border-bottom: 2px solid #c0c0c0;
-  outline: none;
-}
-
-.login-container .actions {
-  margin: 2em 0 0;
-  width: 100%;
-}
-
-.login-container .actions .login-btn {
-  background: #f16272;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  height: 50px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.2em;
-  letter-spacing: 0.05em;
-  text-align: center;
-  text-transform: uppercase;
-  transition: background 0.3s ease-in-out;
-  width: 100%;
-}
-
-.login-container .actions .login-btn:hover {
-  background: #ee3e52;
+.login-container {
+  .field {
+    margin-bottom: 0.75em;
+    width: 100%;
+    input {
+      background: #fafafa;
+      border: none;
+      border-bottom: 2px solid #e9e9e9;
+      color: #666;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1em;
+      height: 50px;
+      transition: border-color 0.3s;
+      width: 100%;
+      &[type="checkbox"] {
+        width: auto;
+        display: inline;
+        height: auto;
+        margin-right: 10px;
+        margin-top: 20px;
+      }
+      &:focus {
+        border-bottom: 2px solid #c0c0c0;
+        outline: none;
+      }
+    }
+  }
+  .actions {
+    margin: 2em 0 0;
+    width: 100%;
+    .login-btn {
+      background: #f16272;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      height: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.2em;
+      letter-spacing: 0.05em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background 0.3s ease-in-out;
+      width: 100%;
+      &:hover {
+        background: #ee3e52;
+      }
+    }
+  }
 }
 
 .login-footer {
   font-size: 1em;
   padding: 2em 0;
   text-align: center;
-}
-
-.login-footer a {
-  color: #8c8c8c;
-  text-decoration: none;
-  transition: border-color 0.3s;
-}
-
-.login-footer a:hover {
-  border-bottom: 1px dotted #8c8c8c;
+  a {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: border-color 0.3s;
+    &:hover {
+      border-bottom: 1px dotted #8c8c8c;
+    }
+  }
 }

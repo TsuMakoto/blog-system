@@ -3,13 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* ************** 記事投稿画面スタイル定義 ************** */
-/* タイトルのIDのスタイル設定 */ 
+/* タイトルのIDのスタイル設定 */
+
 #edit-title {
   width: 80%;
   height: 40px;
 }
 
 /* 右サイドメニュー */
+
 #post-component {
   right: 0px;
   position: absolute;
@@ -18,12 +20,14 @@
 }
 
 /* タイトルのフォームのスタイル */
+
 .title-form {
   width: 100%;
   height: 100%;
 }
 
 /* 記事を書くテキストエリアのスタイル定義 */
+
 .edit-textarea {
   box-sizing: border-box;
   border-radius: 0;
@@ -42,6 +46,7 @@
 }
 
 /* 記事を書く領域のスタイルを定義 */
+
 .edit {
   border: 1px double #000;
   width: 80%;
@@ -57,48 +62,55 @@
   font-size: 18px;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid rgba(0,0,0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .category-frame {
   margin: 20px 0px;
-}
-
-.category-frame ul {
-  list-style: none;
+  ul {
+    list-style: none;
+  }
 }
 
 /* 投稿ボタンのスタイル */
-.update-post { 
+
+.update-post {
   padding: 5px 20px;
   font-size: 1.2em;
   background-color: #1b95e0;
   color: #fff;
-  margin: 20px 0px ;
+  margin: 20px 0px;
 }
+
 /* ************** 記事投稿画面スタイル定義 ************** */
 
 /* ************** 記事投稿一覧スタイル定義 ************** */
+
 #show-region {
   width: 80%;
   height: auto;
+  a {
+    text-decoration: none;
+    color: #2d3133;
+    font-size: 14px;
+  }
 }
 
-#show-region a,
 .comment-area .post-title a {
   text-decoration: none;
   color: #2d3133;
   font-size: 14px;
 }
 
-#show-region ul {
-  list-style: none;
-  background-color: #fff;
-}
-
-#show-region li {
-  border: 1px solid #000;
-  padding: 10px;
+#show-region {
+  ul {
+    list-style: none;
+    background-color: #fff;
+  }
+  li {
+    border: 1px solid #000;
+    padding: 10px;
+  }
 }
 
 .post-show pre {
@@ -107,126 +119,116 @@
   line-height: 1.5em;
 }
 
-#show-region .user_info a {
-  font-size: 0.8em;
-}
-
-#show-region .post-title {
-  border-bottom: 1px solid #cccccc;
-  overflow: hidden;
-}
-
-#show-region .post-title a {
-  font-size: 1.2em;
+#show-region {
+  .user_info a {
+    font-size: 0.8em;
+  }
+  .post-title {
+    border-bottom: 1px solid #cccccc;
+    overflow: hidden;
+    a {
+      font-size: 1.2em;
+    }
+  }
 }
 
 /* ************** 記事投稿一覧スタイル定義 ************** */
 
-
 /* ************** 記事投稿詳細スタイル定義 ************** */
+
 #detail-posts-region {
   background-color: #fff;
   margin-bottom: 20px;
   margin-right: 60px;
   padding: 20px;
-}
-
-#detail-posts-region .title {
-  font-size: 3em;
-  font-weight: 700;
-  margin-bottom: 16px;
-  line-height: 1.4;
-  word-break: break-all;
-}
-
-#detail-posts-region .post-content {
-  font-size: 1.2em;
-  white-space: -moz-pre-wrap; /* Mozilla */
-  white-space: -pre-wrap;     /* Opera 4-6 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  white-space: pre-wrap;      /* CSS3 */
-  word-wrap: break-word;      /* IE 5.5+ */
+  .title {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    word-break: break-all;
+  }
+  .post-content {
+    font-size: 1.2em;
+    white-space: -moz-pre-wrap;
+    /* Mozilla */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    white-space: pre-wrap;
+    /* CSS3 */
+    word-wrap: break-word;
+    /* IE 5.5+ */
+  }
 }
 
 .comment-region {
-  margin-right:60px;
+  margin-right: 60px;
   margin-bottom: 60px;
-}
-
-.comment-region textarea {
-  width: 100%;
-  padding: 10px;
-}
-
-.comment-region input[type="submit"] {
-  position: absolute;
-  right: 60px;
-  padding: 5px 20px;
-  font-size: 1.2em;
-  background-color: #1b95e0;
-  color: #fff;
+  textarea {
+    width: 100%;
+    padding: 10px;
+  }
+  input[type="submit"] {
+    position: absolute;
+    right: 60px;
+    padding: 5px 20px;
+    font-size: 1.2em;
+    background-color: #1b95e0;
+    color: #fff;
+  }
 }
 
 .comment-show-region {
   margin-right: 60px;
   margin-bottom: 60px;
+  textarea {
+    width: 100%;
+    padding: 10px;
+  }
+  li {
+    margin-bottom: 30px;
+  }
+  .comment-update-form, .comment-edit-form {
+    position: absolute;
+    right: 60px;
+  }
+  .update-comment-area {
+    margin-bottom: 40px;
+  }
+  .edit-comment-area, textarea, .comment-area {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid #cccccc;
+  }
+  .edit-comment-area, .comment-content {
+    white-space: -moz-pre-wrap;
+    /* Mozilla */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    white-space: pre-wrap;
+    /* CSS3 */
+    word-wrap: break-word;
+    /* IE 5.5+ */
+  }
+  input[type="submit"] {
+    background-color: inherit;
+    border: none;
+    font-size: 1em;
+    color: #5e5e5e;
+  }
+  ul {
+    list-style: none;
+  }
+  .edit-comment {
+    color: #337ab7;
+    text-decoration-line: underline;
+  }
 }
 
-.comment-show-region textarea {
-  width: 100%;
-  padding: 10px;
-}
-
-.comment-show-region li {
-  margin-bottom: 30px;
-}
-
-.comment-show-region .comment-update-form {
-  position: absolute;
-  right: 60px;
-}
-
-.comment-show-region .comment-edit-form {
-  position: absolute;
-  right: 60px;
-}
-
-.comment-show-region .update-comment-area {
-  margin-bottom: 40px;
-}
-
-.comment-show-region .edit-comment-area, 
-.comment-show-region textarea,
-.comment-show-region .comment-area {
-  background-color: #fff;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  border: 2px solid #cccccc;
-}
-
-.comment-show-region .edit-comment-area,
-.comment-show-region .comment-content {
-  white-space: -moz-pre-wrap; /* Mozilla */
-  white-space: -pre-wrap;     /* Opera 4-6 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  white-space: pre-wrap;      /* CSS3 */
-  word-wrap: break-word;      /* IE 5.5+ */
-}
-
-.comment-show-region input[type="submit"] {
-  background-color: inherit;
-  border: none;
-  font-size: 1em;
-  color: #5e5e5e;
-}
-
-.comment-show-region ul {
-  list-style: none;
-}
-
-.comment-show-region .edit-comment {
-  color: #337ab7;
-  text-decoration-line: underline;
-}
 /* ************** 記事投稿詳細スタイル定義 ************** */

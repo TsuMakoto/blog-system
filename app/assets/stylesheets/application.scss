@@ -16,6 +16,7 @@
 
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
+
 /* fontawesome */
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
@@ -24,13 +25,18 @@
 }
 
 /* Simple Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 a {
   color: #337ab7;
 }
 
 /* body */
+
 body {
   background: #e9e9e9;
   color: #5e5e5e;
@@ -38,6 +44,7 @@ body {
 }
 
 /* ヘッダーのスタイル */
+
 .head-contents {
   font-weight: 800;
   font-size: 14px;
@@ -46,26 +53,27 @@ body {
   background-color: #ffffff;
   margin-bottom: 50px;
   border-bottom: 2px solid #cccccc;
+  .navbar {}
 }
 
-.head-contents .navbar {
+.nav > li > a {
+  &:active, &:hover {
+    color: #ffffff;
+    background-color: #74cfae;
+    padding: 10px 0px;
+  }
 }
 
-.nav>li>a:active, .nav>li>a:hover {
-  color: #ffffff;
-  background-color: #74cfae;
-  padding: 10px 0px;
-}
-
-.head-contents>.navbar>ul{
-  list-style: none;
-  text-align: right;
-  margin-right: 15px;
-}
-
-.head-contents>.navbar li {
-  margin-right: 10px;
-  display: inline;
+.head-contents > .navbar {
+  > ul {
+    list-style: none;
+    text-align: right;
+    margin-right: 15px;
+  }
+  li {
+    margin-right: 10px;
+    display: inline;
+  }
 }
 
 .flash {
@@ -80,6 +88,7 @@ body {
 }
 
 /* 左サイドメニュー*/
+
 #left-menu-all {
   float: left;
   position: absolute;
@@ -90,7 +99,6 @@ body {
   width: 20%;
   transform: translateY(-50px);
   background-color: #efffef;
-
 }
 
 #original-contents {
@@ -98,15 +106,15 @@ body {
   width: 75%;
 }
 
-#myhome>#show-region {
-  margin-bottom: 60px;
-  width: 100%;
-}
-
-#myhome>#show-region ul {
-  margin-right: 60px;
-}
-
-#myhome .comment-show-region .post-title {
-	border-bottom: 1px solid #cccccc;
+#myhome {
+  > #show-region {
+    margin-bottom: 60px;
+    width: 100%;
+    ul {
+      margin-right: 60px;
+    }
+  }
+  .comment-show-region .post-title {
+    border-bottom: 1px solid #cccccc;
+  }
 }
