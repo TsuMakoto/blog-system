@@ -53,8 +53,8 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     model_destroy_and_redirect(
-      user_posts_path(@post.user_id),
-      user_posts_path(@post.user_id),
+      user_posts_path(current_user.user_id),
+      user_posts_path(current_user.user_id),
       @post,
       "記事「#{@post.title}」を削除しました"
     )
