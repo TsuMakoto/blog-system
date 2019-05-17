@@ -16,12 +16,13 @@
   <%# 現在のカテゴリー %>
   <ul class="categorys">
     <% @categorys.each do |category| %>
-      <% if category[:level] == 1 %>
-        <li class="category level1"><%= category[:name] %></li>
-      <% elsif category[:level] == 2 %>
-        <li class="category level2"><%= category[:name] %></li>
+      <% case category[:level]
+      when 1 %>
+      <li class="category level1"><%= category[:name] %></li>
+      <% when 2 %>
+      <li class="category level2"><%= category[:name] %></li>
       <% else %>
-        <li class="category level3"><%= category[:name] %></li>
+      <li class="category level3"><%= category[:name] %></li>
       <% end %>
     <% end %>
   </ul>
