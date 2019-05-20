@@ -1,0 +1,10 @@
+ja:
+  posts:
+    create:
+      success_message: タイトル「%{post_title}」を投稿しました
+    update:
+      success_message: タイトル「%{post_title}」を更新しました
+    destroy:
+      success_message: タイトル「%{post_title}」を削除しました
+
+

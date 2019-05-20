@@ -19,7 +19,7 @@ class PostsController < ApplicationController
       user_posts_path(current_user.user_id),
       new_post_path,
       @post,
-      '投稿に成功しました'
+      t('.success_message', post_title: @post.title)
     )
   end
 
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
       edit_post_path(@post.id),
       @post,
       post_params,
-      '記事を更新しました'
+      t('.success_message', post_title: @post.title)
     )
   end
 
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
       user_posts_path(current_user.user_id),
       user_posts_path(current_user.user_id),
       @post,
-      "記事「#{@post.title}」を削除しました"
+      t('.success_message', post_title: @post.title)
     )
   end
 
@@ -102,6 +102,6 @@ class PostsController < ApplicationController
   # 編集権限がない場合、記事一覧ページへ飛ばす
   def ensure_correct_user
     post = Post.find(params[:id])
-    redirect_to(posts_path, notice: '権限がありません') unless current_user.id == post.user_id
+    redirect_to(posts_path, notice: t('controllers.unauthorized_error_message')) unless current_user.id == post.user_id
   end
 end

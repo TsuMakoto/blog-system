@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       post_path(@post.id),
       post_path(@post.id),
       @comment,
-      'コメントを投稿しました'
+      t('.success_message')
     )
   end
 
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
       post_path(@post.id),
       post_path(@post.id),
       @comment,
-      'コメントを削除しました'
+      t('.success_message')
     )
   end
 
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
       post_path(@post.id),
       @comment,
       comment_params,
-      'コメントを更新しました'
+      t('.success_message')
     )
   end
 
@@ -58,17 +58,17 @@ class CommentsController < ApplicationController
   def ensure_correct_user
     comment = Comment.find(params[:id])
 
-    if params[:action] == 'destroy'
+    if action_name == 'destroy'
       if comment.user.id != current_user.id && comment.post.user.id != current_user.id
         redirect_to(
           post_path(comment.post.id),
-          notice: '権限がありません'
+          notice: t('controllers.unauthorized_error_message')
         )
       end
     elsif comment.user.id != current_user.id
       redirect_to(
         post_path(comment.post.id),
-        notice: '権限がありません'
+        notice: t('controllers.unauthorized_error_message')
       )
     end
   end

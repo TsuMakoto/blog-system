@@ -1,0 +1,8 @@
+ja:
+  comments:
+    create:
+      success_message: コメントを投稿しました
+    destroy:
+      success_message: コメントを削除しました
+    update:
+      success_message: コメントを更新しました
