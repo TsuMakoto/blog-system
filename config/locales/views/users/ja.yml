@@ -5,3 +5,9 @@ ja:
       emp_users_post_message1: 最近の投稿はありません
       emp_users_post_message2: 初めての投稿をしましょう!
       users_comment: 最近のコメント
+    posts:
+      index:
+        emp_users_post_message1: まだ投稿はありません
+        posts: 記事を投稿する
+        edit: 編集
+        delete: 削除

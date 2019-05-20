@@ -101,7 +101,7 @@ class PostsController < ApplicationController
 
   # 編集権限がない場合、記事一覧ページへ飛ばす
   def ensure_correct_user
-    @post = Post.find(params[:id])
-    redirect_to(posts_path, notice: '権限がありません') unless current_user.id == @post.user_id
+    post = Post.find(params[:id])
+    redirect_to(posts_path, notice: '権限がありません') unless current_user.id == post.user_id
   end
 end

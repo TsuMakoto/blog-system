@@ -14,12 +14,12 @@
       <div class="navbar">
         <ul class="nav">
           <% if user_signed_in? %>
-            <li><%= link_to('ホームへ', user_path(current_user.user_id)) %></li>
-            <li><%= link_to('投稿一覧', posts_path) %></li>
-            <li><%= link_to('ログアウト', destroy_user_session_path, method: 'delete') %></li>
+            <li><%= link_to t('.user_home'), user_path(current_user.user_id) %></li>
+            <li><%= link_to t('.posts'), posts_path %></li>
+            <li><%= link_to t('.logout'), destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li><%= link_to('投稿一覧', posts_path) %></li>
-            <li><%= link_to('ログイン', new_user_session_path) %></li>
+            <li><%= link_to t('.posts'), posts_path %></li>
+            <li><%= link_to t('.login'), new_user_session_path %></li>
           <% end %>
         </ul>
       </div>
@@ -36,11 +36,11 @@
         <div id="left-menu-all">
           <div class="side-menu">
             <ul>
-              <li><%= link_to('自分の記事', user_posts_path(current_user.user_id)) %></li>
-              <li><%= link_to('新規作成',  new_post_path) %></li>
-              <li>カテゴリー</li>
-              <li>タグ</li>
-              <li>お気に入り一覧</li>
+              <li><%= link_to t('.user_posts'), user_posts_path(current_user.user_id) %></li>
+              <li><%= link_to t('.new_posts'),  new_post_path %></li>
+              <li><%= t('.category') %></li>
+              <li><%= t('.tag') %></li>
+              <li><%= t('.like') %></li>
             </ul>
           </div>
         </div>

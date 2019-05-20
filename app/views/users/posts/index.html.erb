@@ -1,16 +1,16 @@
 <%# ここに記事を表示 %>
 <div id="show-region" class="show-region">
   <% if current_user.posts.empty? %>
-    <div>まだ投稿はありません</div>
-    <div><%= link_to "記事を投稿する", new_post_path %></div>
+    <div><%= t '.emp_users_post_message1' %></div>
+    <div><%= link_to t('.posts'), new_post_path %></div>
   <% else %>
     <div class="show">
       <ul>
         <% current_user.posts.each do |post| %>
           <li class="post-show">
             <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
-            <%= link_to "編集", edit_post_path(post.id) %>
-            <%= link_to "削除", post_path(post.id), {method: "delete"} %>
+            <%= link_to t('.edit'), edit_post_path(post.id) %>
+            <%= link_to t('.delete'), post_path(post.id), {method: :delete} %>
           </li>
         <% end %>
       </ul>
