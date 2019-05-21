@@ -5,20 +5,16 @@
     <div><%= t '.emp_post_message2' %></div>
     <div><%= link_to t('.emp_post_message3'), new_post_path %></div>
   <% else %> 
-    <div class="show">
-      <ul>
-        <% @posts.each do |post| %>
-          <li class="post-show">
-            <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
-            <pre><%= post.content %></pre>
-            <p class="user_info">
-              by 
-              <%= link_to post.user.user_id, user_path(post.user.user_id) %>
-            </p>
-            <p><%= t '.comment_count', comment_count: post.comments.count %></p>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <ul class="posts-show">
+      <% @posts.each do |post| %>
+        <li class="post-show">
+          <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
+          <pre><%= post.content %></pre>
+          <p class="user_info">by <%= link_to post.user.user_id, user_path(post.user.user_id) %>
+          </p>
+          <p><%= t '.comment_count', comment_count: post.comments.count %></p>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </div>

@@ -102,6 +102,8 @@ class PostsController < ApplicationController
   # 編集権限がない場合、記事一覧ページへ飛ばす
   def ensure_correct_user
     post = Post.find(params[:id])
-    redirect_to(posts_path, notice: t('controllers.unauthorized_error_message')) unless current_user.id == post.user_id
+    return if current_user.id == post.user_id
+
+    redirect_to(posts_path, notice: t('controllers.unauthorized_error_message'))
   end
 end

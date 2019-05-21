@@ -85,7 +85,6 @@
 /* ************** 記事投稿画面スタイル定義 ************** */
 
 /* ************** 記事投稿一覧スタイル定義 ************** */
-
 #show-region {
   width: 80%;
   height: auto;
@@ -180,9 +179,10 @@
   }
 }
 
-.comment-show-region {
+#comments-index {
   margin-right: 60px;
   margin-bottom: 60px;
+  list-style: none;
   textarea {
     width: 100%;
     padding: 10px;
@@ -190,14 +190,14 @@
   li {
     margin-bottom: 30px;
   }
-  .comment-update-form, .comment-edit-form {
+  .comment-update-form, .comment-edit-delete {
     position: absolute;
     right: 60px;
   }
   .update-comment-area {
     margin-bottom: 40px;
   }
-  .edit-comment-area, textarea, .comment-area {
+  pre, textarea {
     background-color: #fff;
     padding: 10px;
     margin: 10px;
@@ -222,13 +222,30 @@
     font-size: 1em;
     color: #5e5e5e;
   }
-  ul {
-    list-style: none;
-  }
-  .edit-comment {
+  .comment-edit, .comment-delete {
     color: #337ab7;
     text-decoration-line: underline;
+    display: inline;
+    cursor: pointer;
   }
+
+  .user_comment-area {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid #cccccc;
+    .post-title {
+      border-bottom: 1px solid #cccccc;
+      overflow: hidden;
+      a {
+        text-decoration: none;
+        color: #2d3133;
+        font-size: 14px;
+      }
+    }
+  }
+
 }
 
 /* ************** 記事投稿詳細スタイル定義 ************** */

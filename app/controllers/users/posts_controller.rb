@@ -10,12 +10,12 @@ class Users::PostsController < ApplicationController
   private
 
   # 編集権限がないユーザを該当記事ページへ飛ばす
-  # rubocop:disable Style/MultilineIfModifier
   def ensure_correct_user
+    return if current_user.user_id == params[:user_id]
+
     redirect_to(
       user_posts_path(current_user.user_id),
       notice: '自分の記事へリダイレクトしました'
-    ) unless current_user.user_id == params[:user_id]
+    )
   end
-  # rubocop:enable Style/MultilineIfModifier
 end

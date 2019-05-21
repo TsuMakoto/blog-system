@@ -13,39 +13,51 @@
 
 <%# ここにコメントを表示 %>
 <h3><%= Comment.model_name.human %></h3>
-<div class="comment-show-region">
-  <ul class="comment-show-list">
-    <% @post.comments.each do |comment| %>
-      <li>
-        <p><%= link_to comment.user.user_id, user_path(comment.user.user_id) %></p>
-        <div id="<%= get_id_comment_content comment.id %>">
-          <pre class="edit-comment-area"><%= comment.content %></pre>
-          <div class="comment-edit-form">
-            <% if user_signed_in? %>
-              <% if current_user.id == comment.user_id %>
-                <div class="edit-comment" onclick="editComment(<%= "#{comment.id}" %>)"><%= t '.edit' %></div>
-              <% end %>
-              <% if (current_user.id == @post.user_id || current_user.id == comment.user_id)%>
-                <%= link_to t('.delete'), post_comment_path(@post.id, comment.id), {method: :delete} %>
-              <% end %>
+<ul id="comments-index">
+  <% @post.comments.each do |comment| %>
+    <li>
+      <% # ユーザ情報のリンク表示 %>
+      <p><%= link_to comment.user.user_id, user_path(comment.user.user_id) %></p>
+      <% # コメント表示 %>
+      <div id="<%= comment_content comment.id %>">
+        <% # コメント表示 %>
+        <pre><%= comment.content %></pre>
+        <% # コメント編集・削除 %>
+        <div class="comment-edit-delete">
+          <% # ==== コメントの編集権限により条件分岐 ==== # %>
+          <% if user_signed_in? %>
+
+            <% # コメントは書いた本人のみが編集できる %>
+            <% if current_user.id == comment.user_id %>
+              <div class="comment-edit" onclick="editComment(<%= "#{comment.id}" %>)"><%= t '.edit' %></div>
             <% end %>
-          </div>
+
+            <% # コメントは書いた本人と記事投稿者が削除できる %>
+            <% if (current_user.id == @post.user_id || current_user.id == comment.user_id)%>
+              <%= link_to t('.delete'), post_comment_path(@post.id, comment.id), {method: :delete, class: "comment-delete"} %>
+            <% end %>
+
+          <% end %>
+          <% # ==== コメントの編集権限により条件分岐 ==== # %>
         </div>
-        <% if user_signed_in? && current_user.id == comment.user_id %>
-          <div id="<%= get_id_edit_comment(comment.id)  %>" class="update-comment-area hidden">
-            <%= form_with model: comment, url: post_comment_path(@post.id, comment.id), method: :patch do |f| %>
-              <%= f.text_area :content, size: "30x10" %>
-              <div class="comment-update-form">
-                <%= f.submit t('.update') %>
-                <div class="edit-close" onclick="closeComment(<%= "#{comment.id}" %>)"><%= t '.cancel' %></div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div> 
+      </div>
+
+      <% # コメント編集 %>
+      <% if user_signed_in? && current_user.id == comment.user_id %>
+        <div id="<%= comment_edit comment.id  %>" class="update-comment-area hidden">
+          <%= form_with model: comment, url: post_comment_path(@post.id, comment.id), method: :patch do |f| %>
+            <%= f.text_area :content, size: "30x10" %>
+            <div class="comment-update-form">
+              <%= f.submit t('.update') %>
+              <div class="edit-close" onclick="closeComment(<%= "#{comment.id}" %>)"><%= t '.cancel' %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 <%# ここにコメント記入欄を表示 %>
 <%= form_with model: @comment, url: post_comments_path(@post.id), local: true do |f| %>
   <div id="comment-region" class="comment-region">

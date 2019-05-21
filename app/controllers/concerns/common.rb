@@ -1,12 +1,5 @@
-require 'date'
-
-class ApplicationController < ActionController::Base
-  include Common
-  protect_from_forgery with: :exception
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  private
-
+module Common
+  extend ActiveSupport::Concern
   # モデルのセーブを実行し,指定のURLへリダイレクト
   # ==== Args
   # redirect_url :: リダイレクト先URL
@@ -51,36 +44,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # カテゴリーを階層分けするメソッド
-  # ==== Args
-  # parent_categorys :: 親カテゴリのリスト
-  # ==== Return
-  # 階層分けされたカテゴリのリスト
-  def classify_category(parent_categorys)
-    categorys = []
-    stack = []
-    stack.concat(parent_categorys)
-    level = 1
-    child_count = 1
-    until stack.empty?
-      parent = stack.pop
-      child_count -= 1
-      category = { id: parent.id, name: parent.name, level: level }
-      categorys.push(category)
-      children = parent.children
-      if children.empty? && child_count == 0
-        level -= 1
-      elsif !children.empty?
-        level += 1
-        stack.concat(children)
-        child_count = children.count
-      end
-    end
-    categorys
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_id, :email])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:user_id])
-  end
 end

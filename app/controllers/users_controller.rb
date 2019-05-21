@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   # ユーザのホームを表示
   def show
     @user = User.find_by(user_id: params[:id])
-    @limited_model_posts = limited_model(@user.posts)
-    @limited_model_comments = limited_model(@user.comments)
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(5)
+    @comments = @user.comments.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   private

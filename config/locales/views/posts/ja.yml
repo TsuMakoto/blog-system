@@ -9,10 +9,10 @@ ja:
       emp_post_message3: 記事を投稿する
       comment_count: コメント件数：%{comment_count}
     show:
-      edit: 編集
-      delete: 削除
+      comment_placeholder: コメントを記入してください
       update: 更新
       cancel: キャンセル
-      comment_placeholder: コメントを記入してください
+      edit: 編集
+      delete: 削除
     new:
       edit_placeholder: 記事を書く
