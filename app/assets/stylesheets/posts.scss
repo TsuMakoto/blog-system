@@ -48,9 +48,9 @@
 /* 記事を書く領域のスタイルを定義 */
 
 .edit {
-  border: 1px double #000;
-  width: 80%;
-  margin-top: 20px;
+  // border: 1px double #000;
+  // width: 80%;
+  // margin-top: 20px;
 }
 
 .post-status {
@@ -319,6 +319,20 @@ $BORDER_COLOR: #edf0f4;
           float: right;
           float: 0.8em;
           font-size: 0.8em;
+        }
+      }
+    }
+  }
+}
+
+#user-posts-index {
+  #posts-index {
+    .post {
+      width: 100%;
+      .title {
+        margin-bottom: 30px;
+        a {
+          font-size: 15px;
         }
       }
     }

@@ -1,20 +1,25 @@
 <%# ここに記事を表示 %>
-<div id="show-region" class="show-region">
+<article id="user-posts-index">
   <% if current_user.posts.empty? %>
     <div><%= t '.emp_users_post_message1' %></div>
     <div><%= link_to t('.posts'), new_post_path %></div>
   <% else %>
-    <div class="show">
+    <section id="posts-index">
+      <h1><%= t('.open_index') %></h1>
       <ul>
         <% @posts.each do |post| %>
-          <li class="post-show">
-            <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
-            <%= link_to t('.edit'), edit_post_path(post.id) %>
-            <%= link_to t('.delete'), post_path(post.id), {method: :delete} %>
+          <li>
+            <div class="post">
+              <h2 class="title"><%= link_to t('.title', post_title: post.title), post_path(post.id) %></h2>
+            </div>
+            <div class="change-post">
+              <span class="edit"><%= link_to t('.edit'), edit_post_path(post.id) %></span>
+              <span class="delete"><%= link_to t('.delete'), post_path(post.id), {method: :delete} %></span>
+            </div>
           </li>
         <% end %>
       </ul>
-      <%= paginate @posts %>
-    </div>
+    </section>
+    <%= paginate @posts %>
   <% end %>
-</div>
+</article>

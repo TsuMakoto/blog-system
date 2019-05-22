@@ -7,6 +7,8 @@ ja:
       users_comment: 最近のコメント
     posts:
       index:
+        open_index: 公開記事
+        title: タイトル：%{post_title}
         emp_users_post_message1: まだ投稿はありません
         posts: 記事を投稿する
         edit: 編集
