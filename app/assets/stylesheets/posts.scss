@@ -48,9 +48,9 @@
 /* 記事を書く領域のスタイルを定義 */
 
 .edit {
-  // border: 1px double #000;
-  // width: 80%;
-  // margin-top: 20px;
+  border: 1px double #000;
+  width: 80%;
+  margin-top: 20px;
 }
 
 .post-status {
@@ -250,7 +250,7 @@
 /* ************** 記事投稿詳細スタイル定義 ************** */
 $BORDER_COLOR: #edf0f4;
 #posts-index {
-  width: 80%;
+  width: 70%;
   height: auto;
   background-color: #fff;
   padding: 10px;

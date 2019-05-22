@@ -1,4 +1,7 @@
-<%# ここに記事を表示 %>
+<% # ------ search box ------ # %>
+<%= render 'shared/search', search_content_name: setting_shared_column(val: :title) %>
+
+<% # ------ ここに記事を表示 ------ # %>
 <article id="posts-index">
   <h1><%= t('layouts.application.posts') %></h1>
   <% # ------ 記事がない場合 ------ # %>

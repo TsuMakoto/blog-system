@@ -1,0 +1,27 @@
+/* 検索ボックス */
+#ransack-search-area {
+  .search {
+    width: 30%;
+    transform: translateY(-50px);
+    float: right;
+    padding: 10px;
+    .search-label {
+      position:relative;
+      margin-bottom: 5px;
+      text-decoration: underline double #f16272;
+    }
+    .search-field {
+      position:relative;
+      background-color:#fff;
+      border:1px solid #aaa;
+      // 検索フォーム
+      input {
+        width:100%;
+        height: 40px;
+        line-height:24px;
+        background:none;
+        border:none;
+      }
+    }
+  }
+}

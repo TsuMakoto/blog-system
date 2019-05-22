@@ -1,0 +1,6 @@
+ja:
+  controllers:
+    unauthorized_error_message: 権限がありません
+  view:
+    placeholder_search: "%{search_cont}検索"
+    title: タイトル

@@ -1,0 +1,14 @@
+shared:
+  title: タイトル
+post:
+  show:
+    # ---- ユーザーホームにて,一ページに表示する量 ---- #
+    user_posts_index: 3
+  index:
+    # ---- 記事一覧の一ページ分のインデックス数 ---- #
+    one_page_posts_index: 5
+comment:
+  show:
+    # ---- ユーザーホームにて,一ページに表示する量 ---- #
+    user_comments_index: 3
+

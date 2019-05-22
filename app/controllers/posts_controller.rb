@@ -26,7 +26,14 @@ class PostsController < ApplicationController
   # GET /posts/index
   # 記事一覧を表示
   def index
-    @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
+    @search = Post.ransack(params[:q])
+    @posts =
+      fetch_paginated_model_order_date(
+        :desc,
+        setting_model_column(model: :post, action: action_name, val: :one_page_posts_index),
+        params[:page],
+        @search.result
+      )
   end
 
   # GET /posts/:id/edit
@@ -85,12 +92,11 @@ class PostsController < ApplicationController
   # 今は全てnoneで登録
   def set_category_id
     category_id = params[:post][:category_id]
-    if category_id.to_i == 0
-      @none_category = Category.find_by(name: 'none', user_id: current_user.id)
-      @none_category = save_none_category(current_user.id) if @none_category.nil?
+    return unless category_id.to_i == 0
 
-      params[:post][:category_id] = @none_category.id
-    end
+    @none_category = Category.find_by(name: 'none', user_id: current_user.id)
+    @none_category = save_none_category(current_user.id) if @none_category.nil?
+    params[:post][:category_id] = @none_category.id
   end
 
   def post_params

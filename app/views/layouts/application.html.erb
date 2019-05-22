@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <div class="head-contents">
+    <% # ------ header contents ------ # %>
+    <header class="head-contents">
       <div class="navbar">
         <ul class="nav">
           <% if user_signed_in? %>
@@ -23,13 +24,16 @@
           <% end %>
         </ul>
       </div>
-    </div>
-    <%# success message %>
+    </header>
+
+    <% # ------ success message ------ # %>
     <% if flash[:notice]%>
       <div class="flash">
         <%= flash[:notice] %>
       </div>
     <% end %>
+
+    <% # ------ main contents ------ # %>
     <div class="main-content">
       <%# 投稿一覧やホームに戻るための左サイドバー %>
       <% if user_signed_in? %>

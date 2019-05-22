@@ -13,11 +13,11 @@
     margin: 5px;
     background-color: #f4f4f4;
     text-align: center;
-  }
-  .page-item.active {
-    background-color: #ff0099;
-    a {
-      color: #fff;
+    &.active {
+      background-color: #f16272;
+      a {
+        color: #fff;
+      }
     }
   }
 }

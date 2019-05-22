@@ -1,0 +1,8 @@
+<%= search_form_for @search, url: posts_path, id: "ransack-search-area" do |f| %>
+  <div class="search">
+    <div class="search-label"><%= f.label search_content_name %></div>
+    <div class="search-field">
+      <%= create_search_field f, search_content_name %>
+    </div>
+  </div>
+<% end %>

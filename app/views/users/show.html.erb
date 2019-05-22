@@ -1,3 +1,6 @@
+<% # ------ search box ------ # %>
+<%= render 'shared/search', search_content_name: setting_shared_column(val: :title) %>
+
 <% if @user.posts.count == 0 %>
   <% if current_user.id == @user.id %>
     <h3><%= t('.users_post')%></h3>
