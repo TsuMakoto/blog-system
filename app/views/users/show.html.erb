@@ -1,42 +1,46 @@
 <% if @user.posts.count == 0 %>
   <% if current_user.id == @user.id %>
-    <h3><%= t '.users_post' %></h3>
-    <div><%= t '.emp_users_post_message1' %></div>
+    <h3><%= t('.users_post')%></h3>
+    <div><%= t('.emp_users_post_message1')%></div>
     <div><%= link_to t('.emp_users_post_message1'), new_post_path %></div>
   <% else %>
-    <div><%= t '.emp_post_message1' %></div>
+    <div><%= t('.emp_post_message1')%></div>
   <% end %>
 <% else %>
-  <div id="myhome">
-    <div id="show-region">
-      <h3><%= t '.users_post' %></h3>
-      <ul>
+  <% # ユーザの情報を表示 %>
+  <article id="user-show">
+    <% # 記事一覧を表示 %>
+    <section id="posts-index">
+      <h1><%= t('.users_post')%></h3>
+      <ul class="posts">
         <% @posts.each do |post| %>
-          <li class="post-show">
+          <li>
+            <div class="post">
+              <h2 class="title"><%= link_to post.title, post_path(post.id) %></h2>
+              <pre class="content"><%= post.content %></pre>
+            </div>
+            <div class="thumbnail">NO IMAGE</div>
             <div class="post-time"><p><%= Post.human_attribute_name :post_time, post_time: post.post_time %></p></div>
-            <div class="post-title"><%= link_to post.title, post_path(post.id) %></div>
-            <pre><%= post.content %></pre>
           </li>
         <% end %>
       </ul>
-    </div>
-    <h3><%= t '.users_comment' %></h3>
-    <ul id="comments-index">
-      <% @limited_model_comments.each do |comment| %>
-        <li class="user_comment-area">
-          <div class="post-title">
-            <p>
-            <b><%= Comment.human_attribute_name :post_id %></b>
-            <%= link_to comment.post.title, post_path(comment.post.id) %>
-            </p>
-          </div>
-          <div class="comment-content"><%= comment.content %></div>
-          <p style="text-align: right">
-          by 
-          <%= link_to comment.user.user_id, user_path(comment.user.user_id) %>
-          </p>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+    </section>
+    <%= paginate @posts, param_name: :posts_page %>
+    <% # コメント一覧を表示 %>
+    <section id="comments-index">
+      <h1><%= t('.users_comment')%></h3>
+      <ul>
+        <% @comments.each do |comment| %>
+          <li>
+            <%= Comment.human_attribute_name :post_id %>
+            <h2 class="post-title">
+              <%= link_to comment.post.title, post_path(comment.post.id) %>
+            </h2>
+            <div class="content"><%= comment.content %></div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+    <%= paginate @comments, param_name: :comments_page %>
+  </article>
 <% end %>

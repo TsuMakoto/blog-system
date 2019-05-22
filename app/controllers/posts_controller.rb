@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   # GET /posts/index
   # 記事一覧を表示
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
   end
 
   # GET /posts/:id/edit

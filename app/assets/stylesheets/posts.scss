@@ -181,7 +181,6 @@
 
 #comments-index {
   margin-right: 60px;
-  margin-bottom: 60px;
   list-style: none;
   textarea {
     width: 100%;
@@ -249,3 +248,79 @@
 }
 
 /* ************** 記事投稿詳細スタイル定義 ************** */
+$BORDER_COLOR: #edf0f4;
+#posts-index {
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  a {
+    text-decoration: none;
+    color: #2d3133;
+    font-size: 14px;
+  }
+  // 記事表示欄
+  ul {
+    list-style: none;
+    border-top: 1px solid $BORDER_COLOR;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    // 1記事のデザイン
+    li {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-bottom: 1px solid $BORDER_COLOR;
+      // 記事表示部
+      .post {
+        width: 60%;
+        display: inline-grid;
+        margin-right: 5%;
+        // タイトル
+        .title {
+          margin-bottom: 8px;
+          display: block;
+          overflow-x: hidden;
+          // 記事へのリンク
+          a {
+            font-size: 23px;
+            word-break: break-all;
+            line-height: 1.3;
+          }
+        }
+        // 記事のコンテンツデザイン
+        .content {
+          overflow: hidden;
+          height: 4.5em;
+          line-height: 1.5em;
+          color: #a4b1c1;
+        }
+      }
+      // サムネイル
+      .thumbnail {
+        width: 30%;
+        display: inline-grid;
+      }
+      // 投稿時間
+      .post-time {
+        font-size: 0.8em;
+      }
+      // 記事情報 - post-user, comment-count
+      .post-info {
+        .post-user {
+          display: inline;
+          a {
+            font-size: 0.8em;
+          }
+        }
+        .comment-count {
+          display: inline;
+          float: right;
+          float: 0.8em;
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}

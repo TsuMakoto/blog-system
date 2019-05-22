@@ -1,3 +1,3 @@
 <%= form_with(model: @post, url: post_path, method: :patch) do |form| %>
-  <%= render 'posts/shared/edit', f: form %>
+  <%= render :edit, f: form %>
 <% end %>

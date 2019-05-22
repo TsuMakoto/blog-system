@@ -1,0 +1,23 @@
+.pagination {
+  list-style: none;
+  display: inline-block;
+  width: auto;
+  margin-bottom: 15px;
+  .page-item {
+    display: block;
+    float: left;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  .page-item.active {
+    background-color: #ff0099;
+    a {
+      color: #fff;
+    }
+  }
+}

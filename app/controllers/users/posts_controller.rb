@@ -5,6 +5,7 @@ class Users::PostsController < ApplicationController
   # GET /users/:user_id/posts
   # 自分の記事を表示
   def index
+    @posts = current_user.posts.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   private

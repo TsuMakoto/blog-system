@@ -19,3 +19,52 @@
   display: none; 
 }
 
+$BORDER_COLOR: #edf0f4;
+#comments-index {
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  a {
+    text-decoration: none;
+    color: #2d3133;
+    font-size: 14px;
+  }
+  // 記事表示欄
+  ul {
+    list-style: none;
+    border-top: 1px solid $BORDER_COLOR;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+  }
+  // 1記事のデザイン
+  li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid $BORDER_COLOR;
+    // タイトル
+    .post-title {
+      margin:auto;
+      margin-bottom: 8px;
+      display: block;
+      overflow-x: hidden;
+      width: 85%;
+      // 記事へのリンク
+      a {
+        font-size: 23px;
+        line-height: 1.3;
+      }
+    }
+    // 記事のコンテンツデザイン
+    .content {
+      border-radius: 5px;
+      border: 2px solid $BORDER_COLOR;
+      height: auto;
+      line-height: 1.5em;
+      background: #f4f4f4;
+      padding: 10px;
+    }
+  }
+}

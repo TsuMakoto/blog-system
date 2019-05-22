@@ -1,8 +1,7 @@
 ja:
   posts:
-    shared:
-      edit:
-        edit_placeholder: 記事を書く
+    edit:
+      edit_placeholder: 記事を書く
     index:
       emp_post_message1: まだ投稿はありません
       emp_post_message2: 初めての投稿者になりましょう！

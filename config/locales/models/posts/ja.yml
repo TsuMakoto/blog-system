@@ -5,7 +5,7 @@ ja:
     attributes:
       post:
         id: 記事番号
-        user_id: 投稿者
+        user_id: by  %{username}
         content: コンテンツ
         title: タイトル
         mst_status_id: 公開状態

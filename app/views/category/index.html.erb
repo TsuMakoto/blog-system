@@ -16,8 +16,8 @@
   <%# 現在のカテゴリー %>
   <ul class="categorys">
     <% @categorys.each do |category| %>
-      <% case category[:level]
-      when 1 %>
+      <% case category[:level] %>
+      <% when 1 %>
       <li class="category level1"><%= category[:name] %></li>
       <% when 2 %>
       <li class="category level2"><%= category[:name] %></li>
