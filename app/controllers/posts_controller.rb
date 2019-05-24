@@ -2,10 +2,30 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
-  # GET /posts/new
-  # 記事の新規投稿画面
-  def new
-    @post = Post.new
+  # GET /post/ajax_posts
+  # incremental search for index
+  def ajax_posts
+    @search = Post.ransack(title_cont: params[:word])
+    @posts = fetch_paginated_model(
+      @search.result,
+      setting_model_column(model: :post, action: :index, val: :one_page_posts_index)
+    )
+  end
+
+  # GET /posts/index
+  # 記事一覧を表示
+  def index
+    @search = Post.ransack(params[:q])
+    @posts = fetch_paginated_model(
+      @search.result,
+      setting_model_column(model: :post, action: action_name, val: :one_page_posts_index)
+    )
+
+    # ajax用
+    return unless request.xhr?
+
+    render 'ajax_posts'
+
   end
 
   # POST /posts/create
@@ -23,22 +43,22 @@ class PostsController < ApplicationController
     )
   end
 
-  # GET /posts/index
-  # 記事一覧を表示
-  def index
-    @search = Post.ransack(params[:q])
-    @posts =
-      fetch_paginated_model_order_date(
-        :desc,
-        setting_model_column(model: :post, action: action_name, val: :one_page_posts_index),
-        params[:page],
-        @search.result
-      )
+  # GET /posts/new
+  # 記事の新規投稿画面
+  def new
+    @post = Post.new
   end
 
   # GET /posts/:id/edit
   def edit
     @post = Post.find(params[:id])
+  end
+
+  # GET /post/:post_id
+  # 記事の詳細を表示
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   # PATCH /posts/:post_id
@@ -65,13 +85,6 @@ class PostsController < ApplicationController
       @post,
       t('.success_message', post_title: @post.title)
     )
-  end
-
-  # GET /post/:post_id
-  # 記事の詳細を表示
-  def show
-    @post = Post.find(params[:id])
-    @comment = Comment.new
   end
 
   private
@@ -112,4 +125,5 @@ class PostsController < ApplicationController
 
     redirect_to(posts_path, notice: t('controllers.unauthorized_error_message'))
   end
+
 end

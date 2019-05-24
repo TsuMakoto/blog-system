@@ -1,0 +1,16 @@
+<section id="posts-index">
+  <h1><%= t('.users_post')%></h3>
+  <ul class="posts">
+    <% @posts.each do |post| %>
+      <li>
+        <div class="post">
+          <h2 class="title"><%= link_to post.title, post_path(post.id) %></h2>
+          <pre class="content"><%= post.content %></pre>
+        </div>
+        <div class="thumbnail">NO IMAGE</div>
+        <div class="post-time"><p><%= Post.human_attribute_name :post_time, post_time: post.post_time %></p></div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @posts, param_name: :posts_page, remote: true %>
+</section>

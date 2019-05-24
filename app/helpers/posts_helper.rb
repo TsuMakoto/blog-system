@@ -14,7 +14,7 @@ module PostsHelper
     placeholder = I18n.t('view.placeholder_search', search_cont: search_cotent_name)
     case search_cotent_name
     when setting_shared_column(val: :title)
-      form.search_field :title_cont, placeholder: placeholder
+      form.search_field :title_cont, placeholder: placeholder, id: 'increment-title-search'
     end
   end
 end

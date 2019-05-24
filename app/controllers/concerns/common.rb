@@ -42,12 +42,32 @@ module Common
   end
 
   # modelを指定分だけ日付のオーダーで取得する
-  # params [Symbol] arrange: :desc or :asc
+  # params [ApplicationRecord] target_model: 対象のモデル
   # params [integer] number_in_one_page: 一ページの表示数
   # params [array] page_params: pagination対象のパラメータ
-  # params [ApplicationRecord] target_model: 対象のモデル
-  def fetch_paginated_model_order_date(arrange, number_in_one_page, page_params, target_model)
-    target_model.order(created_at: arrange).page(page_params).per(number_in_one_page)
+  # @params [Symbol] order 並べ替え対象のカラム
+  # params [Symbol] arrange: :desc or :asc
+  def fetch_paginated_model(
+    target_model,
+    number_in_one_page,
+    page_params = params[:page],
+    order = :created_at,
+    arrange = :desc
+  )
+    target_model.order(order => arrange).page(page_params).per(number_in_one_page)
+  end
+
+  # ajaxによる非同期通信を行う
+  # @param [String] action 部分render先のアクション名
+  #                        指定がないなら呼び出し元のaction名
+  def rendering_ajax(action = nil)
+    return unless request.xhr?
+
+    if action
+      render action
+    else
+      render action_name
+    end
   end
 
   def setting_shared_column(val:)

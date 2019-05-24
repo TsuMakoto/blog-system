@@ -1,5 +1,5 @@
 <% # ------ search box ------ # %>
-<%= render 'shared/search', search_content_name: setting_shared_column(val: :title) %>
+<%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: posts_path %>
 
 <% # ------ ここに記事を表示 ------ # %>
 <article id="posts-index">
@@ -11,22 +11,6 @@
     <)div><%= link_to t('.emp_post_message3'), new_post_path %></div>
   <% else %> 
   <% # ------ 記事がある場合 ------ # %>
-    <ul class="posts">
-      <% @posts.each do |post| %>
-        <li>
-          <div class="post-time"><p><%= Post.human_attribute_name :post_time, post_time: post.post_time %></p></div>
-          <div class="post">
-            <h2 class="title"><%= link_to post.title, post_path(post.id) %></h2>
-            <pre class="content"><%= post.content %></pre>
-          </div>
-          <div class="thumbnail">NO IMAGE</div>
-          <div class="post-info">
-            <p class="post-user"><%= link_to Post.human_attribute_name(:user_id, username: post.user.user_id), user_path(post.user.user_id) %></p>
-            <p class="comment-count"><%= t('.comment_count', comment_count: post.comments.count) %></p>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+  <div id="ajax_posts"><%= render 'ajax_posts' %></div>
   <% end %>
 </article>
-<%= paginate @posts %>
