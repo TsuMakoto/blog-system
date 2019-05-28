@@ -15,6 +15,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'acts-as-taggable-on'
 # ---- added gem. ---- #
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

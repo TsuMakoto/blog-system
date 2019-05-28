@@ -16,7 +16,7 @@ module PostsHelper
     when setting_shared_column(val: :title)
       form.search_field :title_cont, placeholder: placeholder, id: 'increment-title-search'
     when setting_shared_column(val: :tag)
-      form.search_field :tag_cont, placeholder: placeholder, id: 'increment-tag-search'
+      form.search_field :name_cont, placeholder: placeholder, id: 'increment-tag-search'
     end
   end
 end

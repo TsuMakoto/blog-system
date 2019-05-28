@@ -1,5 +1,5 @@
 <% # ------ search box ------ # %>
-  <%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: user_path(@user.user_id) %>
+  <%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: user_path(@user.user_id), search: @search %>
 
 <% if @user.posts.count == 0 %>
   <% if current_user.id == @user.id %>

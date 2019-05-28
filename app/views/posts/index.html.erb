@@ -16,6 +16,5 @@
 
 <% # ------ search box ------ # %>
 <div id="right-content">
-  <%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: posts_path, search: @search %>
-  <%= render 'shared/search', search_content_name: setting_shared_column(val: :tag), path: posts_path %>
+  <%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: posts_path, search: @post_search %>
 </div>

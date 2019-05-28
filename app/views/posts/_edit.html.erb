@@ -3,19 +3,23 @@
   <%= f.text_field :title, placeholder: Post.t(:title) %>
 </div>
 
-<div id="select-area">
+<div class="select-area">
   <% # カテゴリーの設定 %>
   <div id="categories">
     <%= f.collection_select :category_id, Category.all, :id, :name, prompt: Post.t(:category_id) %>
   </div>
 
   <% # 投稿時間の設定 %>
-  <% # TODO: 変なところに表示されるのであとで調整する %>
-
   <div id="post-time">
     <%= f.text_field :post_time, class: 'form-control', id: 'datetimepicker', placeholder: t('.post_time_placeholder') %>
   </div>
+
 </div>
+
+<div class="select-area">
+    <%= f.text_field :tag_list, value: @post.tag_list.join(','), placeholder: t('.tag_name_placeholder'), 'data-role' => 'tagsinput' %>
+</div>
+
 
 
 <% # ここに記事を書く %>

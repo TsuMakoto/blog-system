@@ -10,9 +10,8 @@ class PostsController < ApplicationController
       mst_status_id_eq: setting_shared_column(val: :public),
       post_time_lt: Time.zone.now
     )
-    @tag_search = Tag.ransack()
     @posts = fetch_paginated_model(
-      @search.result,
+      @post_search.result,
       setting_model_column(model: :post, action: :index, val: :one_page_posts_index)
     )
   end
@@ -20,13 +19,14 @@ class PostsController < ApplicationController
   # GET /posts/index
   # 記事一覧を表示
   def index
-    @search = Post.ransack(
+    @post_search = Post.ransack(
       title_cont: params[:q],
       mst_status_id_eq: setting_shared_column(val: :public),
       post_time_lt: Time.zone.now
     )
+
     @posts = fetch_paginated_model(
-      @search.result,
+      @post_search.result,
       setting_model_column(model: :post, action: action_name, val: :one_page_posts_index)
     )
 
@@ -108,7 +108,7 @@ class PostsController < ApplicationController
   def post_params
     params
       .require(:post)
-      .permit(:title, :content, :mst_status_id, :category_id, :post_time)
+      .permit(:title, :content, :mst_status_id, :category_id, :post_time, :tag_list)
   end
 
   # 編集権限がない場合、記事一覧ページへ飛ばす

@@ -36,7 +36,6 @@ module Common
     if model.destroy
       redirect_to(redirect_url, notice: success_message)
     else
-      # render(render_url)
       redirect_to(render_url)
     end
   end

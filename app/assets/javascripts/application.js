@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-ujs
 //= require bootstrap
+//= require bootstrap-tagsinput.min
 //= require moment
 //= require bootstrap-datetimepicker
 //= require activestorage

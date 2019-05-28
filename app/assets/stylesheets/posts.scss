@@ -108,32 +108,38 @@ $BORDER_COLOR: #edf0f4;
       border: 1px solid #eceef1;
     }
   }
-  #select-area {
+  .select-area {
     display: flex;
     border-bottom: 1px solid $BORDER_COLOR;
-    height: 60px;
     width: 100%;
-    #categories {
+    #categories, #post-time {
       flex-basis: 50%;
       position: relative;
       padding: 10px 16px;
-      select {
+      select, input {
         width: 100%;
         height: 100%;
         background: #fff;
         border: 1px solid #eceef1;
         border-radius: 3px;
       }
-    }
-    #post-time {
-      flex-basis: 50%;
-      position: relative;
-      padding: 10px 16px;
       input {
-        width: 100%;
-        height: 100%;
         padding: 10px;
-        border-radius: 0;
+      }
+    }
+    .bootstrap-tagsinput {
+      margin: 10px 16px;
+      width: 100%;
+      height: 100%;
+      .tag {
+        background: #f16272;
+        padding: 3px 5px;
+      }
+      input {
+        height: 100%;
+        width: 100%;
+        margin-top: 5px;
+        background: #fff;
         border: 1px solid #eceef1;
         border-radius: 3px;
       }

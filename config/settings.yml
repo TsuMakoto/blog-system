@@ -1,7 +1,7 @@
 shared:
   title: タイトル
-  tag: カテゴリー
-  edit_size: 30x35
+  tag: タグ
+  edit_size: 30x30
   public_status: 1
   private_status: 2
   draft_status: 3
