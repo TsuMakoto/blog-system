@@ -13,6 +13,8 @@ gem 'config'
 gem 'devise'
 gem 'kaminari'
 gem 'ransack'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 # ---- added gem. ---- #
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

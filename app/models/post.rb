@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :mst_status
-  belongs_to :category
+  belongs_to :mst_status, optional: true
+  belongs_to :category, optional: true
 
   has_many :comments, dependent: :destroy
 

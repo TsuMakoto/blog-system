@@ -1,29 +1,32 @@
-<div id="edit-title">
-  <%= f.text_field :title,  class: "title-form", placeholder: Post.human_attribute_name(:title) %>
+<% # タイトルの設定 %>
+<div id="title">
+  <%= f.text_field :title, placeholder: Post.t(:title) %>
 </div>
 
-<%# ここでタグやカテゴリの設定 %>
-<div id="post-component">
-  <div class="side-component">
-    <%= f.submit Post.model_name.human, class: "update-post" %>
-    <div><%= Post.human_attribute_name :mst_status_id %></div>
-    <%= f.select :mst_status_id, MstStatus.all.map{|s| [s.status_name, s.id]}, {}, { class: "post-status" } %>
-    <div class="category-frame">
-      <ul>
-        <% current_user.categories.each do |category| %>
-          <li>
-            <%= f.check_box :category_id, {checked: category.id == @post.category_id}, category.id %>
-            <%= category.name %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+<div id="select-area">
+  <% # カテゴリーの設定 %>
+  <div id="categories">
+    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: Post.t(:category_id) %>
+  </div>
+
+  <% # 投稿時間の設定 %>
+  <% # TODO: 変なところに表示されるのであとで調整する %>
+
+  <div id="post-time">
+    <%= f.text_field :post_time, class: 'form-control', id: 'datetimepicker', placeholder: t('.post_time_placeholder') %>
   </div>
 </div>
 
-<%# ここに記事を書く %>
-<div id="edit-region" class="edit-region">
-  <div class="edit">
-    <%= f.text_area :content, size: "30x40", placeholder: t('.edit_placeholder'), class: "edit-textarea" %>
-  </div>
+
+<% # ここに記事を書く %>
+<div id="content">
+  <%= f.text_area :content, size: setting_shared_column(val: :edit_size), placeholder: t('.edit_placeholder') %>
+</div>
+
+<div id="post-submit">
+  <% # 公開・非公開の設定 %>
+  <%= f.collection_select :mst_status_id, MstStatus.all, :id, :status_name, prompt: Post.t(:mst_status_id) %>
+
+  <% # 投稿 %>
+  <%= f.submit Post.t() %>
 </div>

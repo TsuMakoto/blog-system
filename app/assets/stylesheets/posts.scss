@@ -2,255 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* ************** 記事投稿画面スタイル定義 ************** */
-/* タイトルのIDのスタイル設定 */
-
-#edit-title {
-  width: 80%;
-  height: 40px;
-}
-
-/* 右サイドメニュー */
-
-#post-component {
-  right: 0px;
-  position: absolute;
-  width: 15%;
-  padding: 0px 15px;
-}
-
-/* タイトルのフォームのスタイル */
-
-.title-form {
-  width: 100%;
-  height: 100%;
-}
-
-/* 記事を書くテキストエリアのスタイル定義 */
-
-.edit-textarea {
-  box-sizing: border-box;
-  border-radius: 0;
-  width: 100%;
-  height: 100%;
-  outline: 0;
-  display: block;
-  margin-bottom: 0;
-  padding: 10px;
-  border: 0;
-  font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
-  color: #222;
-  line-height: 1.5;
-  resize: none;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* 記事を書く領域のスタイルを定義 */
-
-.edit {
-  border: 1px double #000;
-  width: 80%;
-  margin-top: 20px;
-}
-
-.post-status {
-  position: relative;
-  font-family: inherit;
-  background-color: transparent;
-  width: 100%;
-  padding: 10px 10px 10px 0;
-  font-size: 18px;
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-}
-
-.category-frame {
-  margin: 20px 0px;
-  ul {
-    list-style: none;
-  }
-}
-
-/* 投稿ボタンのスタイル */
-
-.update-post {
-  padding: 5px 20px;
-  font-size: 1.2em;
-  background-color: #1b95e0;
-  color: #fff;
-  margin: 20px 0px;
-}
-
-/* ************** 記事投稿画面スタイル定義 ************** */
-
-/* ************** 記事投稿一覧スタイル定義 ************** */
-#show-region {
-  width: 80%;
-  height: auto;
-  a {
-    text-decoration: none;
-    color: #2d3133;
-    font-size: 14px;
-  }
-}
-
-.comment-area .post-title a {
-  text-decoration: none;
-  color: #2d3133;
-  font-size: 14px;
-}
-
-#show-region {
-  ul {
-    list-style: none;
-    background-color: #fff;
-  }
-  li {
-    border: 1px solid #000;
-    padding: 10px;
-  }
-}
-
-.post-show pre {
-  overflow: hidden;
-  height: 4.5em;
-  line-height: 1.5em;
-}
-
-#show-region {
-  .user_info a {
-    font-size: 0.8em;
-  }
-  .post-title {
-    border-bottom: 1px solid #cccccc;
-    overflow: hidden;
-    a {
-      font-size: 1.2em;
-    }
-  }
-}
-
-/* ************** 記事投稿一覧スタイル定義 ************** */
-
-/* ************** 記事投稿詳細スタイル定義 ************** */
-
-#detail-posts-region {
-  background-color: #fff;
-  margin-bottom: 20px;
-  margin-right: 60px;
-  padding: 20px;
-  .title {
-    font-size: 3em;
-    font-weight: 700;
-    margin-bottom: 16px;
-    line-height: 1.4;
-    word-break: break-all;
-  }
-  .post-content {
-    font-size: 1.2em;
-    white-space: -moz-pre-wrap;
-    /* Mozilla */
-    white-space: -pre-wrap;
-    /* Opera 4-6 */
-    white-space: -o-pre-wrap;
-    /* Opera 7 */
-    white-space: pre-wrap;
-    /* CSS3 */
-    word-wrap: break-word;
-    /* IE 5.5+ */
-  }
-}
-
-.comment-region {
-  margin-right: 60px;
-  margin-bottom: 60px;
-  textarea {
-    width: 100%;
-    padding: 10px;
-  }
-  input[type="submit"] {
-    position: absolute;
-    right: 60px;
-    padding: 5px 20px;
-    font-size: 1.2em;
-    background-color: #1b95e0;
-    color: #fff;
-  }
-}
-
-#comments-index {
-  margin-right: 60px;
-  list-style: none;
-  textarea {
-    width: 100%;
-    padding: 10px;
-  }
-  li {
-    margin-bottom: 30px;
-  }
-  .comment-update-form, .comment-edit-delete {
-    position: absolute;
-    right: 60px;
-  }
-  .update-comment-area {
-    margin-bottom: 40px;
-  }
-  pre, textarea {
-    background-color: #fff;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    border: 2px solid #cccccc;
-  }
-  .edit-comment-area, .comment-content {
-    white-space: -moz-pre-wrap;
-    /* Mozilla */
-    white-space: -pre-wrap;
-    /* Opera 4-6 */
-    white-space: -o-pre-wrap;
-    /* Opera 7 */
-    white-space: pre-wrap;
-    /* CSS3 */
-    word-wrap: break-word;
-    /* IE 5.5+ */
-  }
-  input[type="submit"] {
-    background-color: inherit;
-    border: none;
-    font-size: 1em;
-    color: #5e5e5e;
-  }
-  .comment-edit, .comment-delete {
-    color: #337ab7;
-    text-decoration-line: underline;
-    display: inline;
-    cursor: pointer;
-  }
-
-  .user_comment-area {
-    background-color: #fff;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    border: 2px solid #cccccc;
-    .post-title {
-      border-bottom: 1px solid #cccccc;
-      overflow: hidden;
-      a {
-        text-decoration: none;
-        color: #2d3133;
-        font-size: 14px;
-      }
-    }
-  }
-
-}
-
 /* ************** 記事投稿詳細スタイル定義 ************** */
 $BORDER_COLOR: #edf0f4;
 #posts-index {
-  width: 70%;
   height: auto;
   background-color: #fff;
   padding: 10px;
@@ -335,6 +89,97 @@ $BORDER_COLOR: #edf0f4;
           font-size: 15px;
         }
       }
+    }
+  }
+}
+
+#post-new, #post-edit {
+  width: 80%;
+  #title {
+    border-bottom: 1px solid $BORDER_COLOR;
+    height: 60px;
+    width: 100%;
+    padding: 12px 16px;
+    input {
+      width: 100%;
+      height: 100%;
+      text-align: start;
+      border-radius: 3px;
+      border: 1px solid #eceef1;
+    }
+  }
+  #select-area {
+    display: flex;
+    border-bottom: 1px solid $BORDER_COLOR;
+    height: 60px;
+    width: 100%;
+    #categories {
+      flex-basis: 50%;
+      position: relative;
+      padding: 10px 16px;
+      select {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border: 1px solid #eceef1;
+        border-radius: 3px;
+      }
+    }
+    #post-time {
+      flex-basis: 50%;
+      position: relative;
+      padding: 10px 16px;
+      input {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 0;
+        border: 1px solid #eceef1;
+        border-radius: 3px;
+      }
+    }
+  }
+  #content {
+    padding: 10px 16px;
+    border-bottom: 1px solid $BORDER_COLOR;
+    textarea {
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      border-radius: 0;
+      border: 1px solid #eceef1;
+      border-radius: 3px;
+    }
+  }
+  #post-submit {
+    text-align: right;
+    height: 60px;
+    width: 100%;
+    padding: 12px 16px;
+    input[type="submit"] {
+      background: #f16272;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      height: 100%;
+      font-size: 1.2em;
+      letter-spacing: 0.05em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background 0.3s ease-in-out;
+      padding: 5px 20px;
+      &:hover {
+        background: #ee3e52;
+      }
+    }
+    select {
+      height: 100%;
+      transform: translateY(-2px);
+      margin-right: 5px;
+      background: #fff;
+      border: 1px solid #eceef1;
+      border-radius: 3px;
+      width: 100px;
     }
   }
 }

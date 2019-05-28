@@ -20,6 +20,8 @@
 /* fontawesome */
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
+@import 'bootstrap-datetimepicker';
+
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
 }
@@ -43,6 +45,10 @@ body {
   font: 400 87.5%/1.5em 'Open Sans', sans-serif;
 }
 
+input {
+  font-size: 1.2em;
+}
+
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: 1px;
   font-weight: bold;
@@ -52,6 +58,9 @@ h1, h2, h3, h4, h5, h6 {
 /* ヘッダーのスタイル */
 
 .head-contents {
+  position: fixed;
+  width: 100%;
+  z-index:3;
   font-weight: 800;
   font-size: 14px;
   padding-top: 20px;
@@ -61,7 +70,6 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid #cccccc;
   .navbar {}
 }
-
 .nav > li > a {
   &:active, &:hover {
     color: #ffffff;
@@ -93,34 +101,26 @@ h1, h2, h3, h4, h5, h6 {
   width: 80%;
 }
 
-/* 左サイドメニュー*/
-
-#left-menu-all {
-  float: left;
-  position: absolute;
-  padding-left: 40px;
-  padding-top: 40px;
-  padding-right: 20px;
-  height: 100%;
-  width: 20%;
-  transform: translateY(-50px);
-  background-color: #efffef;
-}
-
-#original-contents {
-  margin-left: 25%;
-  width: 75%;
-}
-
-#myhome {
-  > #show-region {
-    margin-bottom: 60px;
-    width: 100%;
-    ul {
-      margin-right: 60px;
-    }
+#main-content {
+  transform: translateY(60px);
+  display: flex;
+  z-index: 2;
+  #left-menu {
+    border-right: 2px solid #cccccc;
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-right: 20px;
+    width: 20%;
+    background-color: #fff;
   }
-  .comment-show-region .post-title {
-    border-bottom: 1px solid #cccccc;
+  #center-content {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    width: 65%;
+  }
+  #right-content {
+    width: 20%;
   }
 }
+

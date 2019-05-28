@@ -12,6 +12,24 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function () {
+  $('#datetimepicker').datetimepicker({
+    // TODO: picker timeのデザイン調整
+    format : 'YYYY-MM-DD hh:mm:ss',
+    icons: {
+      time: 'fa fa-clock-o',
+      date: 'fa fa-calendar',
+      up: 'fa fa-arrow-up',
+      down: 'fa fa-arrow-down',
+      previous: 'fa fa-arrow-left',
+      next: 'fa fa-arrow-right'
+    }
+  });
+});

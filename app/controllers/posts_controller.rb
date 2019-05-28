@@ -5,7 +5,12 @@ class PostsController < ApplicationController
   # GET /post/ajax_posts
   # incremental search for index
   def ajax_posts
-    @search = Post.ransack(title_cont: params[:word])
+    @title_search = Post.ransack(
+      title_cont: params[:word],
+      mst_status_id_eq: setting_shared_column(val: :public),
+      post_time_lt: Time.zone.now
+    )
+    @tag_search = Tag.ransack()
     @posts = fetch_paginated_model(
       @search.result,
       setting_model_column(model: :post, action: :index, val: :one_page_posts_index)
@@ -15,7 +20,11 @@ class PostsController < ApplicationController
   # GET /posts/index
   # 記事一覧を表示
   def index
-    @search = Post.ransack(params[:q])
+    @search = Post.ransack(
+      title_cont: params[:q],
+      mst_status_id_eq: setting_shared_column(val: :public),
+      post_time_lt: Time.zone.now
+    )
     @posts = fetch_paginated_model(
       @search.result,
       setting_model_column(model: :post, action: action_name, val: :one_page_posts_index)
@@ -25,15 +34,12 @@ class PostsController < ApplicationController
     return unless request.xhr?
 
     render 'ajax_posts'
-
   end
 
   # POST /posts/create
   # 新規記事投稿
   def create
-    set_category_id
     @post = current_user.posts.build(post_params)
-    @post.post_time = Time.zone.today # TODO: 不要なので削除予定（post_paramsで設定する）
 
     model_save_and_redirect(
       user_posts_path(current_user.user_id),
@@ -64,7 +70,6 @@ class PostsController < ApplicationController
   # PATCH /posts/:post_id
   # 記事の更新
   def update
-    set_category_id
     @post = Post.find(params[:id])
     model_update_and_redirect(
       user_posts_path(current_user.user_id),
@@ -100,22 +105,10 @@ class PostsController < ApplicationController
     @none_category if @none_category.save
   end
 
-  # カテゴリー未選択の場合、カテゴリー"none"を追加
-  # TODO: カテゴリ選択ができるように実装
-  # 今は全てnoneで登録
-  def set_category_id
-    category_id = params[:post][:category_id]
-    return unless category_id.to_i == 0
-
-    @none_category = Category.find_by(name: 'none', user_id: current_user.id)
-    @none_category = save_none_category(current_user.id) if @none_category.nil?
-    params[:post][:category_id] = @none_category.id
-  end
-
   def post_params
     params
       .require(:post)
-      .permit(:title, :content, :mst_status_id, :category_id)
+      .permit(:title, :content, :mst_status_id, :category_id, :post_time)
   end
 
   # 編集権限がない場合、記事一覧ページへ飛ばす
@@ -125,5 +118,4 @@ class PostsController < ApplicationController
 
     redirect_to(posts_path, notice: t('controllers.unauthorized_error_message'))
   end
-
 end

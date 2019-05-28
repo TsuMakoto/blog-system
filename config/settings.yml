@@ -1,5 +1,10 @@
 shared:
   title: タイトル
+  tag: カテゴリー
+  edit_size: 30x35
+  public_status: 1
+  private_status: 2
+  draft_status: 3
 post:
   show:
     # ---- ユーザーホームにて,一ページに表示する量 ---- #

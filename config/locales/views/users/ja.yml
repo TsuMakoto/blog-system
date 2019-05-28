@@ -13,3 +13,7 @@ ja:
         posts: 記事を投稿する
         edit: 編集
         delete: 削除
+      passwords:
+        new:
+          head: パスワードを再発行
+

@@ -2,6 +2,7 @@ ja:
   posts:
     edit:
       edit_placeholder: 記事を書く
+      post_time_placeholder: 投稿日時
     index:
       emp_post_message1: まだ投稿はありません
       emp_post_message2: 初めての投稿者になりましょう！

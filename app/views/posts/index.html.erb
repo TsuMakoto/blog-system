@@ -1,16 +1,21 @@
-<% # ------ search box ------ # %>
-<%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: posts_path %>
+<div id="center-content">
+  <% # ------ ここに記事を表示 ------ # %>
+  <article id="posts-index">
+    <h1><%= t('layouts.application.posts') %></h1>
+    <% # ------ 記事がない場合 ------ # %>
+    <% if @posts.empty? %>
+      <div><%= t('.emp_post_message1') %></div>
+      <div><%= t('.emp_post_message2') %></div>
+      <div><%= link_to t('.emp_post_message3'), new_post_path %></div>
+    <% else %> 
+      <% # ------ 記事がある場合 ------ # %>
+      <div id="ajax_posts"><%= render 'ajax_posts' %></div>
+    <% end %>
+  </article>
+</div>
 
-<% # ------ ここに記事を表示 ------ # %>
-<article id="posts-index">
-  <h1><%= t('layouts.application.posts') %></h1>
-  <% # ------ 記事がない場合 ------ # %>
-  <% if @posts.empty? %>
-    <div><%= t('.emp_post_message1') %></div>
-    <div><%= t('.emp_post_message2') %></div>
-    <)div><%= link_to t('.emp_post_message3'), new_post_path %></div>
-  <% else %> 
-  <% # ------ 記事がある場合 ------ # %>
-  <div id="ajax_posts"><%= render 'ajax_posts' %></div>
-  <% end %>
-</article>
+<% # ------ search box ------ # %>
+<div id="right-content">
+  <%= render 'shared/search', search_content_name: setting_shared_column(val: :title), path: posts_path, search: @search %>
+  <%= render 'shared/search', search_content_name: setting_shared_column(val: :tag), path: posts_path %>
+</div>

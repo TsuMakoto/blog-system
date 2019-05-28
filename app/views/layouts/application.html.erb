@@ -34,25 +34,22 @@
     <% end %>
 
     <% # ------ main contents ------ # %>
-    <div class="main-content">
+    <div id="main-content">
       <%# 投稿一覧やホームに戻るための左サイドバー %>
       <% if user_signed_in? %>
-        <div id="left-menu-all">
+        <div id="left-menu">
           <div class="side-menu">
             <ul>
               <li><%= link_to t('.user_posts'), user_posts_path(current_user.user_id) %></li>
               <li><%= link_to t('.new_posts'),  new_post_path %></li>
-              <li><%= t('.category') %></li>
               <li><%= t('.tag') %></li>
               <li><%= t('.like') %></li>
             </ul>
           </div>
         </div>
       <% end %>
-      <%#- 投稿一覧やホームに戻るためのサイドバー %>
-      <div id="original-contents">
-        <%= yield %>
-      </div>
+      <%#- メイン画面%>
+      <%= yield %>
     </div>
   </body>
 </html>
